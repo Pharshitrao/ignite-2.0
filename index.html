@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="track-sustainability">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>IGNITE 2.0 — DOOMSDAY EDITION | PES College of Engineering, Mandya</title>
+  
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Live Incursion Telemetry & Host Ticker -->
+  <header class="telemetry-bar">
+    <div class="telemetry-status">
+      <span class="pulse-dot"></span>
+      <span>PESCE MANDYA // AICTE IDEA LAB // DOOMSDAY INCURSION</span>
+    </div>
+    
+    <div class="telemetry-data">
+      <span>DATE: <b>11 DEC 2026</b></span>
+      <span>ROUNDS: <b>3 + 1</b></span>
+      <span>FINALISTS: <b>30 TEAMS</b></span>
+      <span>PRIZE POOL: <b>₹45,000</b></span>
+    </div>
+
+    <div class="header-controls">
+      <!-- Audio Atmosphere Toggle -->
+      <button class="audio-btn" id="audio-toggle" aria-label="Toggle Sci-Fi Audio" aria-pressed="false">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <line x1="23" y1="9" x2="17" y2="15"></line>
+          <line x1="17" y1="9" x2="23" y2="15"></line>
+        </svg>
+        AUDIO OFF
+      </button>
+
+      <!-- Track Color Switcher Dots -->
+      <nav class="theme-bar" aria-label="Track Color Switcher">
+        <div class="theme-options">
+          <button class="theme-btn active" data-theme-target="track-sustainability" data-tooltip="Green: Sustainable Development" style="--preview-color:#34d399;" aria-label="Green Sustainability" aria-pressed="true"></button>
+          <button class="theme-btn" data-theme-target="track-robotics" data-tooltip="Purple: Robotics & IoT" style="--preview-color:#c084fc;" aria-label="Purple Robotics" aria-pressed="false"></button>
+          <button class="theme-btn" data-theme-target="track-software" data-tooltip="Red: Software & Agentic AI" style="--preview-color:#ef4444;" aria-label="Red Software" aria-pressed="false"></button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 3D WebGL Background Canvas (Arcane Seal, Reality Shards, Multi-Model Morphing) -->
+  <canvas id="scene" aria-hidden="true"></canvas>
+
+  <!-- Main Content Structure -->
+  <main>
+    <!-- HERO SECTION WITH DOCTOR DOOM POSTER ARTWORK -->
+    <section class="hero">
+      <div class="hero-content-grid">
+        <div>
+          <div class="inst-banner">
+            <span><b>P.E.S. COLLEGE OF ENGINEERING, MANDYA</b> (NIRF Band 201-300)</span>
+            <span>•</span>
+            <span>AICTE IDEA Lab & PES NEXT</span>
+          </div>
+
+          <div class="hero-tag">
+            <span>⚡ "NEW MASK, SAME TASK." · 11 DECEMBER 2026</span>
+          </div>
+
+          <h1>IGNITE 2.0</h1>
+          <p class="sub">A student innovation hackathon for building working solutions to real problems under the sovereign reign of Doctor Doom.</p>
+          
+          <!-- Key Hackathon Stats from Proposal -->
+          <div class="hero-stats-strip">
+            <div class="hero-stat-card">
+              <div class="val">3 + 1</div>
+              <div class="lbl">Online + Offline Rounds</div>
+            </div>
+            <div class="hero-stat-card">
+              <div class="val">30</div>
+              <div class="lbl">Finalist Teams</div>
+            </div>
+            <div class="hero-stat-card">
+              <div class="val">8 hrs</div>
+              <div class="lbl">Offline Final (IDEA Lab)</div>
+            </div>
+            <div class="hero-stat-card">
+              <div class="val">₹45K</div>
+              <div class="lbl">Cash Prize Pool</div>
+            </div>
+          </div>
+
+          <!-- Real-Time Countdown to 11 Dec 2026 -->
+          <div id="count" role="timer" aria-label="Countdown to IGNITE 2.0 Final">
+            <div id="d">00<small>days</small></div>
+            <div id="h">00<small>hours</small></div>
+            <div id="m">00<small>minutes</small></div>
+            <div id="s">00<small>seconds</small></div>
+          </div>
+          
+          <div class="hero-actions">
+            <a class="btn" href="#tracks">Choose Your Track</a>
+            <a class="btn btn-secondary" href="#rounds">3+1 Roadmap</a>
+            <a class="btn btn-secondary" href="#facilities">Hackathon Guidelines</a>
+          </div>
+        </div>
+
+        <!-- DOCTOR DOOM INTERACTIVE DUAL-POSTER SHOWCASE -->
+        <div class="hero-poster-container" id="poster-tilt-container">
+          <div class="poster-tabs" role="tablist" aria-label="Doomsday Poster Selection">
+            <button class="poster-tab-btn active" data-poster="throne" type="button" role="tab" aria-selected="true">
+              🏛️ Cathedral Throne Room
+            </button>
+            <button class="poster-tab-btn" data-poster="cloaks" type="button" role="tab" aria-selected="false">
+              👥 The Masked Factions
+            </button>
+          </div>
+
+          <!-- POSTER 1: CATHEDRAL THRONE ROOM (AICTE IDEA LAB / DOCTOR DOOM SOVEREIGNTY) -->
+          <div class="hero-poster-frame active" id="poster-throne">
+            <img src="assets/images/doom-throne.jpg" alt="Avengers: Doomsday Cathedral Throne Room and Latverian Council" loading="eager">
+            
+            <!-- Interactive Faction Pins (Clickable to jump to Track Pages) -->
+            <a href="track-robotics-iot.html" class="poster-pin" style="top:58%; left:36%; --pin-glow:#c084fc;" title="Purple Syndicate: Track 01 (Robotics & IoT)">
+              <span class="pin-marker"></span>
+              <span class="pin-card">🔮 Track 01: Purple Robotics & IoT →</span>
+            </a>
+
+            <a href="track-sustainability.html" class="poster-pin" style="top:60%; left:63%; --pin-glow:#34d399;" title="Green Order: Track 02 (Sustainable Development)">
+              <span class="pin-marker"></span>
+              <span class="pin-card">🌿 Track 02: Green Sustainable Dev →</span>
+            </a>
+
+            <a href="track-software-ai.html" class="poster-pin" style="top:52%; left:50%; --pin-glow:#ef4444;" title="Red Sovereign: Track 03 (Software & Agentic AI)">
+              <span class="pin-marker"></span>
+              <span class="pin-card">🔴 Track 03: Red Software & AI →</span>
+            </a>
+
+            <div class="poster-pin" style="top:88%; left:50%; --pin-glow:#facc15;" title="Arcane Latverian Summoning Seal">
+              <span class="pin-marker"></span>
+              <span class="pin-card">⚡ Arcane Latverian Summoning Seal</span>
+            </div>
+
+            <div class="hero-poster-caption">
+              "12.18.26 IS DOOMSDAY" · CATHEDRAL OF LATVERIA
+            </div>
+          </div>
+
+          <!-- POSTER 2: THE MASKED FACTIONS (SDCC TEASER REVEAL) -->
+          <div class="hero-poster-frame" id="poster-cloaks">
+            <img src="assets/images/doom-cloaks.jpg" alt="Avengers: Doomsday Doctor Doom and Cloaked Factions" loading="lazy">
+            
+            <!-- Interactive Faction Pins -->
+            <a href="track-robotics-iot.html" class="poster-pin" style="top:40%; left:12%; --pin-glow:#c084fc;" title="Track 01: Robotics & IoT">
+              <span class="pin-marker"></span>
+              <span class="pin-card">🔮 Track 01: Purple Robotics Syndicate →</span>
+            </a>
+
+            <div class="poster-pin" style="top:25%; left:48%; --pin-glow:#34d399;" title="Doctor Victor von Doom">
+              <span class="pin-marker"></span>
+              <span class="pin-card">👑 Victor Von Doom — Sovereign Overseer</span>
+            </div>
+
+            <div class="poster-pin" style="top:32%; left:62%; --pin-glow:#fbbf24;" title="Latverian Sentinel Automaton">
+              <span class="pin-marker"></span>
+              <span class="pin-card">🤖 Latverian Sentinel Automaton</span>
+            </div>
+
+            <a href="track-sustainability.html" class="poster-pin" style="top:42%; left:88%; --pin-glow:#34d399;" title="Track 02: Sustainable Development">
+              <span class="pin-marker"></span>
+              <span class="pin-card">🌿 Track 02: Green Sustainable Dev →</span>
+            </a>
+
+            <div class="hero-poster-caption">
+              "INFINITY VISION" · THE MASKED SOVEREIGNTY
+            </div>
+          </div>
+
+          <!-- 3D HUD Interactive Controls -->
+          <div class="hud-3d-controls">
+            <button class="incursion-trigger-btn" id="btn-trigger-incursion" type="button" aria-label="Trigger Multiverse Incursion Shockwave">
+              <span>⚡</span> INITIATE INCURSION
+            </button>
+            <button class="incursion-trigger-btn btn-mask-focus" id="btn-focus-mask" type="button" aria-label="Focus Camera on 3D Doctor Doom Mask">
+              <span>👁️</span> DOOM MASK FOCUS
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAILER QUOTE RIBBON (SDCC DOOMSDAY TRAILER REVEALS & LORE) -->
+    <div class="trailer-quote-ribbon">
+      <div class="quote-block">
+        <div class="quote-text">"He was the smartest guy in every room... he used to be kind. But he isn't lost. He is broken."</div>
+        <div class="quote-speaker">— Susan Storm (The Fantastic Four)</div>
+      </div>
+      <div class="quote-block" style="border-left-color:var(--highlight);">
+        <div class="quote-text">"New mask, same task. Hell answers to me... I AM DOOM!"</div>
+        <div class="quote-speaker">— Victor Von Doom (Avengers: Doomsday)</div>
+      </div>
+      <div class="quote-block" style="border-left-color:#38bdf8;">
+        <div class="quote-text">"The Multiverse is dying. Two universes will collide, and neither will survive unless one takes the throne."</div>
+        <div class="quote-speaker">— Reed Richards (Multiverse Incursion Directive)</div>
+      </div>
+    </div>
+
+    <!-- SECTION 02: THE 3 THEMED TRACKS (ENTIRE CARD CLICKABLE TO OPEN DEDICATED PAGE) -->
+    <section id="tracks">
+      <h2>The 3 Official Tracks <span class="sub-tag">Click Anywhere on a Card to Open Its Page</span></h2>
+      <p>Three themes. Four rounds of evaluation. One finished prototype. <b>No fixed problem statements are prescribed</b> — teams have total freedom to identify real-world problems and engineer solutions within their chosen theme. Tap any card below to open its dedicated page:</p>
+
+      <div class="villain-tracks-grid">
+        <!-- 1. GREEN TRACK: SUSTAINABLE DEVELOPMENT -->
+        <a href="track-sustainability.html" class="villain-track-card selected-faction" data-faction-target="track-sustainability" style="--track-color:#34d399; --track-glow:rgba(52, 211, 153, 0.45);">
+          <div class="villain-header">
+            <span class="track-num" style="color:#34d399;">02</span>
+            <div class="villain-avatar-badge" style="border-color:#34d399; color:#34d399;">
+              <span>🌿</span>
+              <span>GREEN · SUSTAINABLE DEV</span>
+            </div>
+          </div>
+          <h3 class="track-title">Sustainable Development</h3>
+          <div class="villain-name" style="color:#facc15;">Doctor Doom & The Gaia Sovereign</div>
+          
+          <div class="track-dept" style="border-left-color:#34d399;">
+            <b>DEPARTMENTS:</b> Mechanical Engineering and Civil Engineering
+          </div>
+
+          <div class="villain-quote">"Conserve or collapse. Humanity must engineer solutions that balance our planet's resources."</div>
+
+          <p class="track-desc">
+            Open innovation in climate change adaptation, circular water management, renewable energy, sustainable agriculture, and resilient infrastructure.
+          </p>
+
+          <div class="track-card-cta">
+            Open Sustainable Development Page (Green) →
+          </div>
+        </a>
+
+        <!-- 2. PURPLE TRACK: ROBOTICS, IoT AND AUTOMATION -->
+        <a href="track-robotics-iot.html" class="villain-track-card" data-faction-target="track-robotics" style="--track-color:#c084fc; --track-glow:rgba(192, 132, 252, 0.45);">
+          <div class="villain-header">
+            <span class="track-num" style="color:#c084fc;">01</span>
+            <div class="villain-avatar-badge" style="border-color:#c084fc; color:#c084fc;">
+              <span>🔮</span>
+              <span>PURPLE · ROBOTICS & IoT</span>
+            </div>
+          </div>
+          <h3 class="track-title">Robotics, IoT & Automation</h3>
+          <div class="villain-name" style="color:#38bdf8;">Resurrected Sentinels & Cybernetic Hive</div>
+          
+          <div class="track-dept" style="border-left-color:#c084fc;">
+            <b>DEPARTMENTS:</b> Robotics & AI, Mechanical Engineering, ECE, ECE (VLSI), and EEE
+          </div>
+
+          <div class="villain-quote">"Cybernetic automation and intelligent hardware swarms conquer every frontier."</div>
+
+          <p class="track-desc">
+            Open innovation in autonomous robots, industrial IoT telemetry, smart sensors, automated actuators, and embedded microcontroller systems.
+          </p>
+
+          <div class="track-card-cta">
+            Open Robotics & IoT Page (Purple) →
+          </div>
+        </a>
+
+        <!-- 3. RED TRACK: SOFTWARE, AGENTIC AI AND WEB DEVELOPMENT -->
+        <a href="track-software-ai.html" class="villain-track-card" data-faction-target="track-software" style="--track-color:#ef4444; --track-glow:rgba(239, 68, 68, 0.45);">
+          <div class="villain-header">
+            <span class="track-num" style="color:#ef4444;">03</span>
+            <div class="villain-avatar-badge" style="border-color:#ef4444; color:#ef4444;">
+              <span>🔴</span>
+              <span>RED · SOFTWARE & AGENTIC AI</span>
+            </div>
+          </div>
+          <h3 class="track-title">Agentic AI & Web Development</h3>
+          <div class="villain-name" style="color:#fbbf24;">The Crimson Code Matrix & Ultron Core</div>
+          
+          <div class="track-dept" style="border-left-color:#ef4444;">
+            <b>DEPARTMENTS:</b> CSE and allied branches (ISE, AIML, Data Science)
+          </div>
+
+          <div class="villain-quote">"There are no strings on me. Software is not written; it reasons, adapts, and executes."</div>
+
+          <p class="track-desc">
+            Open innovation in autonomous multi-agent reasoning, offline-first peer-to-peer web applications, local LLMs, and high-performance web systems.
+          </p>
+
+          <div class="track-card-cta">
+            Open Software & AI Page (Red) →
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- SECTION 03: BRING YOUR OWN HARDWARE GUIDELINES (STANDARD HACKATHON RULES) -->
+    <section id="facilities">
+      <h2>Hackathon Facilities & Component Guidelines <span class="sub-tag">Standard Hackathon Environment</span></h2>
+      <p>IGNITE 2.0 is a standard technical hackathon conducted at the AICTE IDEA Lab. Please review the equipment policy below before arriving:</p>
+
+      <div class="facility-guideline-banner">
+        <h3>⚠️ Component & Hardware Policy: Bring Your Own Equipment</h3>
+        <p>
+          Organizers do <b>not</b> supply individual hardware parts, sensor kits, development boards, or microcontrollers. All participating teams must arrange and bring their own components required for their prototype:
+        </p>
+
+        <ul>
+          <li><b>Hardware / IoT / Robotics Teams:</b> Must bring their own development boards (Arduino, ESP32, Raspberry Pi, STM32), sensors, actuators, motor drivers, jumper wires, breadboards, batteries, and toolkits.</li>
+          <li><b>Sustainable Development Teams:</b> Must bring their own filtration rigs, miniature pumps, plumbing fittings, soil/water sensor probes, and auxiliary power banks.</li>
+          <li><b>Software & AI Teams:</b> Must bring their own development laptops and power adapters. High-speed campus Wi-Fi and power strips are provided at every team station.</li>
+          <li><b>Venue Provision:</b> AICTE IDEA Lab provides high-speed Wi-Fi, electricity plug points at each team bench, workbench tables, chairs, event mentoring, and standard facilities.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SECTION 04: 3 + 1 EVALUATION ROUNDS ROADMAP -->
+    <section id="rounds">
+      <h2>Evaluation Format <span class="sub-tag">3 + 1 Progressive Filtering</span></h2>
+      <p>Ideas are filtered and refined through three online evaluation rounds. The top 30 teams across the three themes advance to the 8-hour offline final at AICTE IDEA Lab, PESCE.</p>
+
+      <div class="rounds-grid">
+        <!-- ROUND 1 -->
+        <div class="round-card">
+          <div class="round-tag">
+            <span>Round 01 · Online</span>
+            <span>By 30 Nov 2026</span>
+          </div>
+          <h3 class="round-title">Idea Screening</h3>
+          <div class="round-dates">PPT Submission (20–29 Nov)</div>
+          <p>Teams register and submit a structured PPT on their chosen theme. Every submission is rigorously reviewed by the evaluation board, filtering ideas to standard.</p>
+        </div>
+
+        <!-- ROUND 2 -->
+        <div class="round-card">
+          <div class="round-tag">
+            <span>Round 02 · Online</span>
+            <span>1 – 3 Dec 2026</span>
+          </div>
+          <h3 class="round-title">Evaluation & Feedback</h3>
+          <div class="round-dates">Virtual Pitch & Mentoring</div>
+          <p>Qualifying teams present online before panels, receiving structured suggestions from domain faculty and mentors to strengthen their architecture and approach.</p>
+        </div>
+
+        <!-- ROUND 3 -->
+        <div class="round-card">
+          <div class="round-tag">
+            <span>Round 03 · Online</span>
+            <span>4 – 5 Dec 2026</span>
+          </div>
+          <h3 class="round-title">Final Online Evaluation</h3>
+          <div class="round-dates">Top 30 Finalists Selected</div>
+          <p>Refined submissions are evaluated again, and the top 30 teams (10 per theme) are officially announced on 5 December to enter the offline battleground.</p>
+        </div>
+
+        <!-- ROUND 4 (OFFLINE FINAL) -->
+        <div class="round-card offline-final">
+          <div class="round-tag">
+            <span style="color:var(--glow);">Final Round · Offline</span>
+            <span>11 Dec 2026</span>
+          </div>
+          <h3 class="round-title">AICTE IDEA Lab Final</h3>
+          <div class="round-dates">8 Hours of Building</div>
+          <p>Finalists assemble at PESCE Mandya with working builds for intensive on-site mentoring, prototyping, judge evaluations, and crowning of the champions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 05: OPEN THEME BRAINSTORMING AI CO-PILOT -->
+    <section id="ai-co-pilot" class="ai-section">
+      <h2>Theme Ideation Co-Pilot <span class="sub-tag">Brainstorming Assistant</span></h2>
+      <p>Remember: You choose your own problem! If you need architectural brainstorming or tech-stack exploration for your Round 1 PPT submission, query our ideation terminal:</p>
+
+      <div class="terminal-container">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+          </div>
+          <span>IGNITE_2.0 // THEME_IDEATION_ASSISTANT.SH</span>
+          <span>v2.0-PESCE</span>
+        </div>
+
+        <div class="terminal-body">
+          <p class="terminal-intro">> OPEN INNOVATION MODE: Select a theme to explore sample architecture concepts and MVP scope guidelines:</p>
+
+          <div class="terminal-presets">
+            <button class="preset-chip" type="button" data-track="sustainability" data-query="Clean Water & Conservation">🌿 Green: Clean Water & Conservation</button>
+            <button class="preset-chip" type="button" data-track="sustainability" data-query="Smart Agriculture & Energy">🌿 Green: Smart Agriculture & Energy</button>
+            <button class="preset-chip" type="button" data-track="robotics" data-query="Autonomous Rover Systems">🔮 Purple: Autonomous Rover Systems</button>
+            <button class="preset-chip" type="button" data-track="robotics" data-query="Industrial IoT & Predictive Sensors">🔮 Purple: Industrial IoT & Sensors</button>
+            <button class="preset-chip" type="button" data-track="software" data-query="Agentic AI Workflows">🔴 Red: Agentic AI Workflows</button>
+            <button class="preset-chip" type="button" data-track="software" data-query="Decentralized Offline Web Apps">🔴 Red: Offline-First Web Apps</button>
+          </div>
+
+          <div class="terminal-controls">
+            <select class="terminal-select" id="ai-track-select" aria-label="Select Official Hackathon Theme">
+              <option value="sustainability">Green: Sustainable Development</option>
+              <option value="robotics">Purple: Robotics, IoT and Automation</option>
+              <option value="software">Red: Agentic AI & Web Development (Software)</option>
+            </select>
+
+            <input class="terminal-input" id="ai-query-input" type="text" placeholder="Explore an idea keyword (e.g. TinyML, Hydroponics, LoRa)..." aria-label="Ideation Query">
+
+            <button class="btn" id="ai-generate-btn" type="button">Brainstorm Concepts</button>
+          </div>
+
+          <pre class="terminal-output" id="ai-output"><span class="prompt-prefix">></span> Terminal Ready. Select your theme above to brainstorm technical stacks and MVP guidelines.<span class="cursor-blink"></span></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 06: SCHEDULE FOR 11 DEC 2026 -->
+    <section id="schedule">
+      <h2>Offline Final Day Schedule <span class="sub-tag">11 December 2026</span></h2>
+      <p>A single intensive day at the AICTE IDEA Lab, PESCE, for the 30 finalist teams (60 to 120 participants).</p>
+
+      <div class="schedule-table-wrap">
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>Timeline</th>
+              <th>Session & Activity</th>
+              <th>Lead By</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><time>09:30</time></td>
+              <td><b>Registration and Check-in</b><br><small style="color:var(--dim)">Finalist teams assemble at AICTE IDEA Lab and claim workbenches.</small></td>
+              <td>AICTE IDEA Lab</td>
+            </tr>
+            <tr>
+              <td><time>10:00</time></td>
+              <td><b>Inauguration</b><br><small style="color:var(--dim)">Opening ceremony, protocol address, and hackathon briefing.</small></td>
+              <td>Protocol</td>
+            </tr>
+            <tr>
+              <td><time>10:30</time></td>
+              <td><b>Mentoring and Upskilling Sessions</b><br><small style="color:var(--dim)">Domain mentors inspect builds and provide architectural refinement.</small></td>
+              <td>Mentors</td>
+            </tr>
+            <tr>
+              <td><time>13:00</time></td>
+              <td><b>Lunch & Recharge Break</b><br><small style="color:var(--dim)">Catered lunch provided for all finalist participants and mentors.</small></td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><time>14:00</time></td>
+              <td><b>Mentoring Continues & Final Preparation</b><br><small style="color:var(--dim)">Final push to lock code, hardware rigs, and presentation slides.</small></td>
+              <td>Mentors</td>
+            </tr>
+            <tr>
+              <td><time>16:30</time></td>
+              <td><b>Tea & Networking Break</b></td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><time>17:00</time></td>
+              <td><b>Project Presentations and Evaluation</b><br><small style="color:var(--dim)">Live 5-minute pit defenses and prototype demonstrations before judges.</small></td>
+              <td>Judges</td>
+            </tr>
+            <tr>
+              <td><time>18:30</time></td>
+              <td><b>Announcement of Winners</b><br><small style="color:var(--dim)">Declaration of theme winners and crowning of IGNITE 2.0 champions.</small></td>
+              <td>Protocol</td>
+            </tr>
+            <tr>
+              <td><time>19:00</time></td>
+              <td><b>Valedictory and Certificates</b><br><small style="color:var(--dim)">Presentation of trophies, certificates, and closing remarks.</small></td>
+              <td>Protocol</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 07: PRIZES & OUTCOMES (BATTLEWORLD PROTOCOL) -->
+    <section id="prizes">
+      <h2>Prizes & Outcomes <span class="sub-tag">₹45,000 Pool · Battleworld Protocol</span></h2>
+      <p>When the multiverse collapses at sundown on 11 December, only what you build will survive. Total prize outlay of ₹45,000 distributed equally across the three core themes:</p>
+
+      <div class="prizes-grid">
+        <div class="prize-card" style="border-left-color:#34d399;">
+          <div class="prize-amount" style="color:#34d399;">₹15,000</div>
+          <h3 style="color:#34d399;">Sustainable Development</h3>
+          <p style="color:var(--bone); font-weight:500;">Green Theme Winner</p>
+          <p style="font-size:0.9rem; margin-top:0.4rem;">Winner Award + Certificate of Excellence + PES NEXT Pre-Incubation consideration.</p>
+        </div>
+
+        <div class="prize-card" style="border-left-color:#c084fc;">
+          <div class="prize-amount" style="color:#c084fc;">₹15,000</div>
+          <h3 style="color:#c084fc;">Robotics, IoT and Automation</h3>
+          <p style="color:var(--bone); font-weight:500;">Purple Theme Winner</p>
+          <p style="font-size:0.9rem; margin-top:0.4rem;">Winner Award + Certificate of Excellence + PES NEXT Pre-Incubation consideration.</p>
+        </div>
+
+        <div class="prize-card" style="border-left-color:#ef4444;">
+          <div class="prize-amount" style="color:#ef4444;">₹15,000</div>
+          <h3 style="color:#ef4444;">Software & Agentic AI</h3>
+          <p style="color:var(--bone); font-weight:500;">Red Theme Winner</p>
+          <p style="font-size:0.9rem; margin-top:0.4rem;">Winner Award + Certificate of Excellence + PES NEXT Pre-Incubation consideration.</p>
+        </div>
+      </div>
+
+      <!-- INCUBATION PIPELINE BANNER -->
+      <div style="background:var(--card-bg); border:1px solid var(--glass-border); padding:1.8rem; margin-top:2rem; border-radius:4px; max-width:1200px;">
+        <h3 style="color:var(--highlight); margin-bottom:0.4rem;">🚀 Startup Incubation Pipeline</h3>
+        <p style="margin:0;">Strong finalist teams will be directly considered for pre-incubation at the <b>PES NEXT Innovation & Incubation Centre</b>, creating a direct feed into regional entrepreneurship programmes and venture cohorts.</p>
+      </div>
+
+      <!-- PARTNERS & HOSTS -->
+      <div class="partners-section">
+        <div class="partners-title">Organised by & Hosted in Partnership with:</div>
+        <div class="partners-flex">
+          <div class="partner-badge">IIC-PESCE</div>
+          <div class="partner-badge">PES NEXT Innovation Centre</div>
+          <div class="partner-badge">AICTE IDEA Lab, PESCE</div>
+          <div class="partner-badge">Ennovate Student Team</div>
+          <div class="partner-badge">InUnity (Innovation for Community)</div>
+          <div class="partner-badge">NAIN (New Age Incubation Network)</div>
+          <div class="partner-badge">IIIT-Bangalore</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 08: REGISTRATION & ENLISTMENT -->
+    <section id="register">
+      <h2>Enlist Your Team <span class="sub-tag">Round 1 PPT Registration</span></h2>
+      <p>Team size: <b>2 to 4 members</b>. Open to students of PESCE and all engineering institutions. Registration is online from <b>20 to 29 November 2026</b>. Note: The <b>₹300 fee is payable ONLY by the 30 shortlisted finalists</b>.</p>
+
+      <div class="reg-box">
+        <form id="ignite-form" onsubmit="event.preventDefault(); alert('Round 1 Registration Submitted! Check your email for PPT submission instructions.');">
+          <div class="form-group">
+            <label for="reg-team">Team Name</label>
+            <input class="form-control" type="text" id="reg-team" placeholder="e.g. Latverian Autonomous Squad" required>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-lead">Team Leader Email</label>
+            <input class="form-control" type="email" id="reg-lead" placeholder="lead@pesce.ac.in" required>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-college">Institution / College Name</label>
+            <input class="form-control" type="text" id="reg-college" placeholder="e.g. PES College of Engineering, Mandya" required>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-theme">Chosen Hackathon Theme</label>
+            <select class="form-control" id="reg-theme">
+              <option value="sustainability">Green: Sustainable Development</option>
+              <option value="robotics">Purple: Robotics, IoT & Automation</option>
+              <option value="agentic-ai">Red: Software, Agentic AI & Web Dev</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-size">Team Size</label>
+            <select class="form-control" id="reg-size">
+              <option value="2">2 Members</option>
+              <option value="3">3 Members</option>
+              <option value="4">4 Members</option>
+            </select>
+          </div>
+
+          <button class="btn" type="submit" style="width: 100%; margin-top: 0.8rem;">Submit Round 1 Application</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>IGNITE 2.0 · 11 December 2026 · AICTE IDEA Lab, PES College of Engineering, Mandya</div>
+    <div style="font-size: 0.82rem; opacity: 0.75;">Jointly Hosted by IIC-PESCE · PES NEXT Innovation & Incubation Centre · InUnity · NAIN · IIIT-B</div>
+  </footer>
+
+  <!-- Third-party 3D WebGL Engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Modular Scripts -->
+  <script src="js/audio.js"></script>
+  <script src="js/themes.js"></script>
+  <script src="js/scene.js"></script>
+  <script src="js/countdown.js"></script>
+  <script src="js/ai-terminal.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

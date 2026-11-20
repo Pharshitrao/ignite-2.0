@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="track-sustainability">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Track 02: Sustainable Development (GREEN) — IGNITE 2.0 | PESCE Mandya</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --glow: #34d399;
+      --accent: #10b981;
+      --highlight: #facc15;
+      --card-bg: rgba(14, 30, 19, 0.9);
+      --glass-border: rgba(52, 211, 153, 0.45);
+    }
+    .track-hero {
+      padding-top: 14vh;
+      min-height: 85vh;
+    }
+    .character-showcase {
+      display: grid;
+      grid-template-columns: 0.9fr 1.3fr;
+      gap: 2.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-left: 6px solid #34d399;
+      border-radius: 8px;
+      padding: 2.5rem;
+      margin: 2.5rem 0;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(52, 211, 153, 0.3);
+      align-items: center;
+    }
+    .character-photo-frame {
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px rgba(52, 211, 153, 0.4);
+      background: #000;
+    }
+    .character-photo-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: contrast(1.1);
+    }
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #34d399;
+      text-decoration: none;
+      font-family: "IBM Plex Sans", monospace;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+      transition: transform 0.2s;
+    }
+    .nav-back:hover {
+      transform: translateX(-4px);
+    }
+    .domain-scope-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin: 1.8rem 0;
+    }
+    .domain-scope-card {
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 4px;
+      padding: 1.5rem;
+      border-left: 3px solid #34d399;
+    }
+    .domain-scope-card h4 {
+      color: #34d399;
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+    }
+    @media (max-width: 850px) {
+      .character-showcase { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="theme-green">
+
+  <!-- Header Ticker -->
+  <header class="telemetry-bar">
+    <div class="telemetry-status">
+      <span class="pulse-dot" style="background:#34d399; box-shadow:0 0 10px #34d399;"></span>
+      <span>TRACK 02 // SUSTAINABLE DEVELOPMENT // GREEN SPECTRUM</span>
+    </div>
+    <div class="telemetry-data">
+      <span>VENUE: <b>AICTE IDEA LAB, PESCE</b></span>
+      <span>PRIZE: <b>₹15,000 CASH</b></span>
+      <span>DATE: <b>11 DEC 2026</b></span>
+    </div>
+    <div class="header-controls">
+      <a class="audio-btn" href="index.html" style="text-decoration:none;">
+        ← MAIN MISSION
+      </a>
+    </div>
+  </header>
+
+  <!-- 3D WebGL Background Canvas -->
+  <canvas id="scene" aria-hidden="true"></canvas>
+
+  <main>
+    <section class="track-hero">
+      <a class="nav-back" href="index.html">← RETURN TO IGNITE 2.0 OVERVIEW</a>
+      
+      <div class="hero-tag" style="color:#facc15; border-color:rgba(52, 211, 153, 0.4);">
+        <span>🌱 Official Theme 02 · Mechanical & Civil Engineering</span>
+      </div>
+
+      <h1 style="text-shadow:0 0 60px rgba(52, 211, 153, 0.5);">SUSTAINABLE DEVELOPMENT</h1>
+      <p class="sub" style="color:#ecfdf5;">Engineering climate adaptation, circular wastewater ecosystems, sustainable agriculture, and renewable micro-grids before ecological collapse.</p>
+
+      <!-- CHARACTER SHOWCASE WITH DOCTOR DOOM POSTER ART -->
+      <div class="character-showcase">
+        <div class="character-photo-frame">
+          <img src="assets/images/doom-throne.jpg" alt="Doctor Doom Throne Room - Sustainable Planetary Order">
+          <div style="padding:0.8rem; background:rgba(0,0,0,0.85); text-align:center; font-family:'IBM Plex Sans',monospace; font-size:0.75rem; color:#facc15;">
+            SOVEREIGN LATVERIAN GAIA ORDER
+          </div>
+        </div>
+
+        <div>
+          <div style="font-family:'IBM Plex Sans',monospace; font-size:0.82rem; color:#34d399; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.6rem;">// THEME OVERSEER: DOCTOR DOOM</div>
+          <h2 style="font-size:2.4rem; line-height:1; margin-bottom:1rem; color:#ecfdf5;">"CONSERVE OR COLLAPSE. THE PLANET ENFORCES BALANCE."</h2>
+          <p style="font-style:italic; color:#e2e8f0; margin-bottom:1.2rem; line-height:1.6;">
+            "The earth's reserves are finite. In this hackathon, participants have total freedom to identify any ecological challenge and engineer a working physical or computational prototype that proves humanity can survive."
+          </p>
+          <div style="background:rgba(0,0,0,0.4); border-left:3px solid #34d399; padding:0.8rem 1rem; border-radius:2px; font-family:'IBM Plex Sans',monospace; font-size:0.85rem; color:#94a3b8;">
+            <b>ALIGNED DEPARTMENTS:</b> Mechanical Engineering and Civil Engineering<br>
+            <b>SUPERVISING FACULTY:</b> Department-Level Faculty Coordinator (PESCE Mandya)
+          </div>
+        </div>
+      </div>
+
+      <!-- OPEN PROBLEM STATEMENT DIRECTIVE -->
+      <div style="background:rgba(52, 211, 153, 0.08); border:1px solid var(--glass-border); border-left:5px solid #34d399; padding:1.8rem; border-radius:4px; margin-top:2rem;">
+        <h3 style="color:#34d399; margin-bottom:0.4rem;">🎯 Open Problem Statement Policy</h3>
+        <p style="color:#ecfdf5; margin:0; line-height:1.6;">
+          <b>No fixed problem statements are prescribed.</b> Teams are completely free to identify any critical challenge within <b>Sustainable Development</b> and build their own innovative working solution.
+        </p>
+      </div>
+
+      <!-- BROAD SUGGESTED DOMAINS -->
+      <h2 style="margin-top:2.5rem;">Suggested Focus Domains <span class="sub-tag">Explore & Choose Your Problem</span></h2>
+      <p>Use these overarching focus areas to inspire your project's Round 1 PPT pitch:</p>
+
+      <div class="domain-scope-grid">
+        <div class="domain-scope-card">
+          <h4>Water Security & Clean Purification</h4>
+          <p>Circular wastewater filtration, greywater reclamation, automated desalination, rainwater catchment telemetry, and industrial effluent neutralizing.</p>
+        </div>
+
+        <div class="domain-scope-card">
+          <h4>Climate Resilience & Urban Infrastructure</h4>
+          <p>Flash-flood mitigation systems, stormwater sensor telemetry, passive cooling structures, permeable pavements, and carbon-sequestering building materials.</p>
+        </div>
+
+        <div class="domain-scope-card">
+          <h4>Sustainable Agriculture & Zero-Soil Systems</h4>
+          <p>Automated vertical hydroponics/aeroponics, organic pest management, smart soil nutrient monitoring, and drought-resistant precision irrigation.</p>
+        </div>
+
+        <div class="domain-scope-card">
+          <h4>Renewable Energy & Waste Management</h4>
+          <p>Micro-hydro kinetic turbines, solar-battery charge controllers, automated waste segregators, plastic pyrolyzers, and biogas telemetry systems.</p>
+        </div>
+      </div>
+
+      <!-- COMPONENT POLICY (STANDARD HACKATHON) -->
+      <div class="facility-guideline-banner">
+        <h3>⚠️ Component & Hardware Policy: Bring Your Own Equipment</h3>
+        <p>
+          IGNITE 2.0 is a standard technical hackathon. The organizers do <b>not</b> supply individual hardware parts, sensor probes, plumbing fittings, or miniature pumps.
+        </p>
+        <ul>
+          <li><b>Components & Kits:</b> Participating teams must bring their own sensors, motors, plumbing rigs, microcontrollers, and tools.</li>
+          <li><b>Venue Provision:</b> AICTE IDEA Lab provides high-speed Wi-Fi, electricity plug points at each team bench, seating, project mentoring, and standard facilities.</li>
+        </ul>
+      </div>
+
+      <!-- ACTIONS -->
+      <div style="display:flex; gap:1.2rem; margin-top:2rem; flex-wrap:wrap;">
+        <a class="btn" href="index.html#register" style="background:#34d399; color:#022c22;">Enlist for Sustainable Development</a>
+        <a class="btn btn-secondary" href="index.html#ai-co-pilot">Brainstorm with AI Co-Pilot</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>IGNITE 2.0 · Track 02: Sustainable Development · AICTE IDEA Lab, PESCE Mandya</div>
+    <div style="font-size:0.85rem; opacity:0.75;"><a href="index.html" style="color:#34d399;">← Back to Main Command</a></div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/themes.js"></script>
+  <script src="js/scene.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const { initScene, wireAudioInteractions } = window.Doomsday || {};
+      const greenTheme = {
+        id: 'track-sustainability',
+        three: {
+          fog: 0x050c07,
+          ambient: 0x0e2418,
+          lava: { r: 0.22, g: 1.0, b: 0.5 },
+          crustBaseHsl: { h: 0.38, s: 0.32, l: 0.05 },
+          emissive: 0x047857,
+          emissiveIntensity: 0.28,
+          wireframe: 0x34d399,
+          wireOpacity: 0.2,
+          ringColor: 0xfacc15,
+          light1: 0x34d399,
+          light2: 0xfacc15,
+          halo: { inner: 'rgba(52, 211, 153, 0.85)', mid: 'rgba(4, 120, 87, 0.35)' },
+          embers: 0x6ee7b7,
+          asteroids: 0x243329
+        }
+      };
+      if (initScene) initScene(greenTheme);
+      if (wireAudioInteractions) wireAudioInteractions();
+    });
+  </script>
+</body>
+</html>

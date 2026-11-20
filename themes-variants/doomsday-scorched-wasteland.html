@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DOOMSDAY â€” Inter-College Hackathon, 11 December</title>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ash:#120703;--soot:#220f07;--glow:#ff5722;--lime:#ffc107;--deep:#b71c1c;--bone:#fff3e0;--dim:#b89c91;color-scheme:dark;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--ash);color:var(--bone);font:400 17px/1.6 "IBM Plex Sans",system-ui,sans-serif;overflow-x:hidden}
+#scene{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+main{position:relative;z-index:1}
+section{min-height:100vh;padding:12vh 6vw;display:flex;flex-direction:column;justify-content:center}
+h1,h2,h3{font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:900;margin:0;line-height:.9;text-transform:uppercase}
+h1{font-size:clamp(4rem,17vw,13rem);letter-spacing:.01em;text-shadow:0 0 60px rgba(61,255,138,.5)}
+h2{font-size:clamp(2.6rem,8vw,6rem);margin-bottom:2rem}
+h3{font-size:1.9rem;color:var(--lime);margin-bottom:.4rem}
+p{max-width:62ch;color:var(--dim)}
+.hero{align-items:flex-start}
+.hero .sub{font-size:clamp(1.1rem,2.4vw,1.6rem);color:var(--bone);max-width:30ch;margin:1.4rem 0 2rem}
+.meta{display:flex;flex-wrap:wrap;gap:.6rem 2rem;color:var(--dim);margin-bottom:2rem}
+.meta b{color:var(--bone);font-weight:500}
+#count{display:flex;gap:clamp(.8rem,3vw,2.4rem);margin-bottom:2.4rem}
+#count div{font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:800;font-size:clamp(2.4rem,7vw,5rem);line-height:1}
+#count small{display:block;font:400 .8rem "IBM Plex Sans",sans-serif;color:var(--dim)}
+.btn{display:inline-block;background:var(--glow);color:#04120a;font:800 1.3rem "Big Shoulders Display",Impact,sans-serif;text-transform:uppercase;padding:.9rem 2.2rem;text-decoration:none;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));transition:background .2s,transform .2s}
+.btn:hover{background:var(--lime);transform:translateY(-2px)}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--lime);outline-offset:4px}
+.glass{background:rgba(14,26,18,.72);backdrop-filter:blur(8px);border-left:3px solid var(--glow);padding:1.4rem 1.6rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem}
+.glass p{margin:0}
+ol.tl{list-style:none;margin:0;padding:0;max-width:760px;border-left:2px solid var(--deep)}
+ol.tl li{display:grid;grid-template-columns:7.5rem 1fr;gap:1rem;padding:.9rem 0 .9rem 1.4rem;position:relative}
+ol.tl li::before{content:"";position:absolute;left:-7px;top:1.35rem;width:12px;height:12px;background:var(--glow);border-radius:50%;box-shadow:0 0 14px var(--glow)}
+ol.tl time{font:800 1.5rem "Big Shoulders Display",Impact,sans-serif;color:var(--lime)}
+ol.tl span{color:var(--bone)}
+ol.tl em{display:block;font-style:normal;color:var(--dim);font-size:.95rem}
+.prize{font:900 clamp(3rem,9vw,6rem)/1 "Big Shoulders Display",Impact,sans-serif;color:var(--glow)}
+footer{position:relative;z-index:1;padding:3rem 6vw;color:var(--dim);border-top:1px solid var(--soot);background:var(--ash)}
+@media (max-width:600px){ol.tl li{grid-template-columns:1fr;gap:0}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<canvas id="scene" aria-hidden="true"></canvas>
+<main>
+<section class="hero">
+  <div class="meta"><span><b>11 December</b></span><span><b>8 hours</b> of building</span><span>Inter-college hackathon</span></div>
+  <h1>Doomsday</h1>
+  <p class="sub">The world ends at sundown. Build what survives.</p>
+  <div id="count" role="timer" aria-label="Time until the hackathon starts"><div id="d">00<small>days</small></div><div id="h">00<small>hours</small></div><div id="m">00<small>minutes</small></div><div id="s">00<small>seconds</small></div></div>
+  <a class="btn" href="#register">Join the last stand</a>
+</section>
+
+<section id="about">
+  <h2>The briefing</h2>
+  <p>One day. Teams from colleges across the region. A collapsing world and eight hours to build something that gives people a chance. Pick a disaster, ship a working prototype, and defend it in front of the judges before the clock runs out.</p>
+</section>
+
+<section id="tracks">
+  <h2>Pick your apocalypse</h2>
+  <div class="grid">
+    <div class="glass"><h3>Climate collapse</h3><p>Floods, heatwaves, failing grids. Tools that predict, warn and adapt.</p></div>
+    <div class="glass"><h3>Blackout</h3><p>The network is down. Offline-first, mesh and low-power systems.</p></div>
+    <div class="glass"><h3>Pandemic protocol</h3><p>Triage, tracing and supply logistics when hospitals are overrun.</p></div>
+    <div class="glass"><h3>Last harvest</h3><p>Food and water security: smart farming, storage and distribution.</p></div>
+    <div class="glass"><h3>Wasteland open</h3><p>Any survival idea that doesnâ€™t fit above. Surprise us.</p></div>
+  </div>
+</section>
+
+<section id="schedule">
+  <h2>The final day</h2>
+  <ol class="tl">
+    <li><time>09:30</time><span>Check-in<em>Teams arrive, get badges and Wi-Fi</em></span></li>
+    <li><time>10:00</time><span>Countdown begins<em>Problem statements revealed. Clock starts.</em></span></li>
+    <li><time>13:00</time><span>Supply drop<em>Lunch break</em></span></li>
+    <li><time>15:00</time><span>Mentor checkpoint<em>Industry mentors review your progress</em></span></li>
+    <li><time>18:00</time><span>Code freeze<em>8 hours are up. Pens down.</em></span></li>
+    <li><time>18:15</time><span>Demos and judging<em>Five minutes per team</em></span></li>
+    <li><time>19:30</time><span>Verdict<em>Winners announced</em></span></li>
+  </ol>
+</section>
+
+<section id="prizes">
+  <h2>Survivorsâ€™ rewards</h2>
+  <div class="grid">
+    <div class="glass"><div class="prize">â‚¹ XX,XXX</div><p>First place</p></div>
+    <div class="glass"><div class="prize">â‚¹ XX,XXX</div><p>Second place</p></div>
+    <div class="glass"><div class="prize">â‚¹ X,XXX</div><p>Best track project, plus certificates for every participant</p></div>
+  </div>
+</section>
+
+<section id="register">
+  <h2>Survive together</h2>
+  <p>Teams of 2 to 4 students from any college. Registration closes when seats run out.</p>
+  <p style="margin:1.2rem 0 2rem">Venue: <b style="color:var(--bone)">Your college name, Hall / Lab</b></p>
+  <div><a class="btn" href="#" id="reg">Register your team</a></div>
+</section>
+</main>
+<footer>Doomsday Hackathon Â· 11 December Â· Organised by your club name</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+var cv=document.getElementById('scene'),R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});
+R.setPixelRatio(Math.min(devicePixelRatio,2));
+var S=new THREE.Scene();S.fog=new THREE.FogExp2(0x120703,.035);
+var C=new THREE.PerspectiveCamera(55,1,.1,200);C.position.set(0,0,9);
+var still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+// Planet: cracked crust with lava glowing through
+var g=new THREE.IcosahedronGeometry(2.6,6),p=g.attributes.position,col=[],v=new THREE.Vector3();
+for(var i=0;i<p.count;i++){v.fromBufferAttribute(p,i);
+ var n=Math.sin(v.x*2.1)*Math.cos(v.y*1.7)+Math.sin(v.z*2.6+v.x)*.6+Math.sin(v.y*5.3)*Math.cos(v.z*4.1)*.35;
+ var crack=Math.abs(Math.sin(v.x*3.2+v.y*2.4)*Math.cos(v.z*3.0+v.y*1.3));
+ var lava=crack<.07,d=1+n*.045-(lava?.05:0);v.multiplyScalar(d);p.setXYZ(i,v.x,v.y,v.z);
+ var c=lava?new THREE.Color(1.0,.38,.05):new THREE.Color().setHSL(.38,.35,.05+Math.max(n,0)*.06);col.push(c.r,c.g,c.b);}
+g.setAttribute('color',new THREE.Float32BufferAttribute(col,3));g.computeVertexNormals();
+var planet=new THREE.Mesh(g,new THREE.MeshStandardMaterial({vertexColors:true,roughness:.9,metalness:.1,emissive:0xb71c1c,emissiveIntensity:.22,flatShading:true}));
+S.add(planet);
+var wire=new THREE.Mesh(new THREE.IcosahedronGeometry(2.85,2),new THREE.MeshBasicMaterial({color:0xff7043,wireframe:true,transparent:true,opacity:.12}));
+S.add(wire);
+
+// Glow halo
+var cc=document.createElement('canvas');cc.width=cc.height=128;var x=cc.getContext('2d'),gr=x.createRadialGradient(64,64,10,64,64,64);
+gr.addColorStop(0,'rgba(255,87,34,.85)');gr.addColorStop(.4,'rgba(183,28,28,.35)');gr.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=gr;x.fillRect(0,0,128,128);
+var halo=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(cc),blending:THREE.AdditiveBlending,depthWrite:false,transparent:true}));
+halo.scale.set(11,11,1);halo.position.z=-1;S.add(halo);
+
+S.add(new THREE.AmbientLight(0x113322,.6));
+var L1=new THREE.PointLight(0xff5722,2.2,40);L1.position.set(-6,4,6);S.add(L1);
+var L2=new THREE.PointLight(0xffc107,.6,40);L2.position.set(7,-3,-4);S.add(L2);
+
+// Asteroid belt
+var N=500,belt=new THREE.InstancedMesh(new THREE.DodecahedronGeometry(.09,0),new THREE.MeshStandardMaterial({color:0x3a4a40,roughness:1,flatShading:true}),N),
+ m=new THREE.Object3D(),data=[];
+for(i=0;i<N;i++){data.push({a:Math.random()*6.283,r:4.2+Math.random()*2.2,y:(Math.random()-.5)*.9,s:.2+Math.random()*.8,k:.4+Math.random()*1.4,sp:.1+Math.random()*.25});}
+var ring=new THREE.Group();ring.rotation.x=.35;ring.rotation.z=-.2;ring.add(belt);S.add(ring);
+
+// Embers + stars
+function pts(n,sp,sz,color,op){var a=new Float32Array(n*3);for(var i=0;i<n*3;i++)a[i]=(Math.random()-.5)*sp;
+ var G=new THREE.BufferGeometry();G.setAttribute('position',new THREE.BufferAttribute(a,3));
+ return new THREE.Points(G,new THREE.PointsMaterial({color:color,size:sz,transparent:true,opacity:op,depthWrite:false}));}
+var stars=pts(900,90,.06,0xe6f2e9,.7),embers=pts(220,26,.07,0xffa726,.9);S.add(stars,embers);
+
+var mx=0,my=0,sc=0;
+addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;});
+function onScroll(){var h=document.documentElement.scrollHeight-innerHeight;sc=h>0?scrollY/h:0;}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+function size(){var w=innerWidth,h=innerHeight;R.setSize(w,h,false);C.aspect=w/h;C.updateProjectionMatrix();planet.position.x=wire.position.x=w>800?3.2:0;ring.position.x=planet.position.x;halo.position.x=planet.position.x;}
+addEventListener('resize',size);size();
+
+var t=0;
+function frame(){requestAnimationFrame(frame);if(!still)t+=.01;
+ planet.rotation.y=wire.rotation.y=t*.25;wire.rotation.x=t*.1;
+ for(var i=0;i<N;i++){var d=data[i],a=d.a+t*d.sp,r=d.r*(1+sc*.5);
+  m.position.set(Math.cos(a)*r,d.y,Math.sin(a)*r);m.rotation.set(t*d.k,t*d.k*.7,0);m.scale.setScalar(d.s*(1+sc*1.6));m.updateMatrix();belt.setMatrixAt(i,m.matrix);}
+ belt.instanceMatrix.needsUpdate=true;
+ var ep=embers.geometry.attributes.position;for(i=0;i<ep.count&&!still;i++){var y=ep.getY(i)+.012+(i%5)*.002;ep.setY(i,y>13?-13:y);}ep.needsUpdate=true;
+ halo.material.opacity=.8+Math.sin(t*3)*.12;
+ C.position.x+=(mx*1.6-C.position.x)*.04;C.position.y+=(-my*1.1-C.position.y)*.04;C.position.z=9+sc*5;C.lookAt(0,0,0);
+ planet.scale.setScalar(1+sc*.25);stars.rotation.y=t*.01;
+ R.render(S,C);}
+frame();
+
+// Countdown to 11 Dec, 10:00 local time
+var T=new Date(new Date().getFullYear(),11,11,10,0,0);if(T<new Date())T.setFullYear(T.getFullYear()+1);
+function pad(n){return String(n).padStart(2,'0');}
+function tick(){var s=Math.max(0,Math.floor((T-new Date())/1000)),o={d:Math.floor(s/86400),h:Math.floor(s%86400/3600),m:Math.floor(s%3600/60),s:s%60},lab={d:'days',h:'hours',m:'minutes',s:'seconds'};
+ for(var k in o)document.getElementById(k).innerHTML=pad(o[k])+'<small>'+lab[k]+'</small>';}
+tick();setInterval(tick,1000);
+})();
+</script>
+</body>
+</html>
+

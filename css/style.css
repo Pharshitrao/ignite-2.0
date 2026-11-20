@@ -1,0 +1,1270 @@
+/* ==========================================================================
+   IGNITE 2.0 — DOOMSDAY EDITION: CORE STYLES & AI-ERA HUD
+   P.E.S. College of Engineering, Mandya (PESCE)
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--ash);
+  color: var(--bone);
+  font: 400 15px/1.65 "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  min-height: 100vh;
+}
+
+/* Cybernetic Scanlines (Softened for Clean, Modern Display) */
+body::after {
+  content: " ";
+  display: block;
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), linear-gradient(90deg, rgba(255, 255, 255, 0.01), rgba(0, 0, 0, 0.01), rgba(255, 255, 255, 0.01));
+  background-size: 100% 4px, 8px 100%;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.04;
+}
+
+/* 3D WebGL Canvas Layer */
+#scene {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+main {
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   LIVE INCURSION TELEMETRY & INSTITUTION TICKER
+   ========================================================================== */
+.telemetry-bar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 110;
+  background: var(--telemetry-bg);
+  border-bottom: 1px solid var(--glass-border);
+  backdrop-filter: blur(14px);
+  padding: 0.45rem 1.4rem;
+  font-family: "IBM Plex Sans", monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dim);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.telemetry-status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--glow);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--glow);
+  animation: pulse-glow 1.5s infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.5; }
+}
+
+.telemetry-data {
+  display: flex;
+  gap: 1.4rem;
+  font-weight: 500;
+}
+
+.telemetry-data span b {
+  color: var(--glow);
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.audio-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--bone);
+  border-radius: 3px;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.72rem;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+}
+
+.audio-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--glow);
+}
+
+.audio-btn.active {
+  border-color: var(--glow);
+  color: var(--glow);
+  box-shadow: 0 0 10px var(--glow-shadow);
+}
+
+/* Quick Palette Switcher Dots */
+.theme-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--glass-border);
+  border-radius: 9999px;
+  padding: 0.2rem 0.5rem;
+}
+
+.theme-options {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.theme-btn {
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s ease;
+}
+
+.theme-btn::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--preview-color);
+  box-shadow: 0 0 8px var(--preview-color);
+}
+
+.theme-btn:hover {
+  transform: scale(1.25);
+}
+
+.theme-btn.active {
+  border-color: #ffffff;
+  transform: scale(1.15);
+  box-shadow: 0 0 12px var(--preview-color);
+}
+
+.theme-btn[data-tooltip]::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: rgba(0, 0, 0, 0.95);
+  color: #fff;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 0.72rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 101;
+}
+
+.theme-btn:hover::before {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   SECTIONS & LIGHT MODERN TYPOGRAPHY (REFINED & PROPORTIONATE)
+   ========================================================================== */
+section {
+  min-height: 100vh;
+  padding: 10vh 6vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 4.8vw, 3.8rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 35px var(--glow-shadow);
+  transition: text-shadow 0.4s ease;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  line-height: 1.2;
+}
+
+h2 .sub-tag {
+  font-family: "Space Grotesk", "IBM Plex Sans", monospace;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--highlight);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+h3 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--glow);
+  margin-bottom: 0.4rem;
+  transition: color 0.4s ease;
+  line-height: 1.25;
+}
+
+p {
+  max-width: 65ch;
+  color: var(--dim);
+  font-size: 0.98rem;
+  font-weight: 400;
+  line-height: 1.65;
+  transition: color 0.4s ease;
+}
+
+/* ==========================================================================
+   TRAILER QUOTE RIBBON
+   ========================================================================== */
+.trailer-quote-ribbon {
+  background: linear-gradient(90deg, rgba(6, 13, 9, 0.92), rgba(18, 32, 22, 0.85), rgba(6, 13, 9, 0.92));
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 1.4rem 6vw;
+  margin: 3rem 0 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  backdrop-filter: blur(12px);
+}
+
+@media (max-width: 768px) {
+  .trailer-quote-ribbon { grid-template-columns: 1fr; gap: 1rem; }
+}
+
+.quote-block {
+  border-left: 3px solid var(--glow);
+  padding-left: 1.2rem;
+}
+
+.quote-block .quote-text {
+  font-size: 1.1rem;
+  color: var(--bone);
+  font-style: italic;
+  line-height: 1.5;
+  margin-bottom: 0.3rem;
+}
+
+.quote-block .quote-speaker {
+  font-family: "IBM Plex Sans", monospace;
+  font-size: 0.75rem;
+  color: var(--highlight);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   HERO SECTION WITH DOCTOR DOOM VISUAL
+   ========================================================================== */
+.hero {
+  align-items: flex-start;
+  padding-top: 14vh;
+}
+
+.hero-content-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.85fr;
+  gap: 3rem;
+  align-items: center;
+  width: 100%;
+  max-width: 1350px;
+}
+
+@media (max-width: 992px) {
+  .hero-content-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ==========================================================================
+   INTERACTIVE DUAL-POSTER HOLOGRAPHIC SHOWCASE (AVENGERS: DOOMSDAY)
+   ========================================================================== */
+.hero-poster-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  max-width: 480px;
+  margin: 0 auto;
+  perspective: 1000px;
+}
+
+.poster-tabs {
+  display: flex;
+  gap: 0.4rem;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid var(--glass-border);
+  padding: 0.3rem;
+  border-radius: 6px;
+  backdrop-filter: blur(8px);
+}
+
+.poster-tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--dim);
+  font-family: "IBM Plex Sans", monospace;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 0.45rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.poster-tab-btn:hover {
+  color: var(--bone);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.poster-tab-btn.active {
+  background: var(--glow);
+  color: #000;
+  font-weight: 700;
+  box-shadow: 0 0 15px var(--glow-shadow);
+}
+
+.hero-poster-frame {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 40px var(--glow-shadow);
+  background: #000;
+  display: none;
+  transform-style: preserve-3d;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.4, 1), box-shadow 0.3s ease;
+}
+
+.hero-poster-frame.active {
+  display: block;
+  animation: poster-fade-in 0.4s ease forwards;
+}
+
+@keyframes poster-fade-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.hero-poster-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease, filter 0.4s ease;
+  filter: contrast(1.1) brightness(0.96);
+}
+
+.hero-poster-frame:hover img {
+  transform: scale(1.02);
+  filter: contrast(1.15) brightness(1.04);
+}
+
+/* Hotspot Interactive Pins */
+.poster-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.pin-marker {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--pin-glow, var(--glow));
+  border: 2px solid #fff;
+  box-shadow: 0 0 12px var(--pin-glow, var(--glow));
+  animation: pin-pulse 1.8s infinite;
+}
+
+@keyframes pin-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 12px var(--pin-glow, var(--glow)); }
+  50% { transform: scale(1.35); box-shadow: 0 0 22px var(--pin-glow, var(--glow)); }
+}
+
+.pin-card {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: rgba(0, 0, 0, 0.94);
+  color: #fff;
+  border: 1px solid var(--pin-glow, var(--glow));
+  padding: 0.35rem 0.65rem;
+  border-radius: 4px;
+  font-family: "IBM Plex Sans", monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.8);
+  z-index: 20;
+}
+
+.poster-pin:hover .pin-card {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.hero-poster-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.95) 75%);
+  padding: 1.2rem 1.2rem 0.8rem;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--highlight);
+  text-transform: uppercase;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* 3D HUD Interactive Controls */
+.hud-3d-controls {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+}
+
+.incursion-trigger-btn {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--glow);
+  color: var(--glow);
+  font-family: "IBM Plex Sans", monospace;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.65rem 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.incursion-trigger-btn:hover {
+  background: var(--glow);
+  color: #000;
+  box-shadow: 0 0 25px var(--glow-shadow);
+  transform: translateY(-2px);
+}
+
+.incursion-trigger-btn:active {
+  transform: translateY(1px);
+}
+
+.btn-mask-focus {
+  border-color: var(--highlight);
+  color: var(--highlight);
+}
+
+.btn-mask-focus:hover {
+  background: var(--highlight);
+  color: #000;
+  box-shadow: 0 0 25px rgba(250, 204, 21, 0.4);
+}
+
+/* Incursion Screen Tremor Animation */
+body.incursion-tremor {
+  animation: incursion-shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes incursion-shake {
+  10%, 90% { transform: translate3d(-2px, 0, 0); }
+  20%, 80% { transform: translate3d(3px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-5px, 0, 0); }
+  40%, 60% { transform: translate3d(5px, 0, 0); }
+}
+
+.inst-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  padding: 0.45rem 1.1rem;
+  border-radius: 4px;
+  margin-bottom: 1.2rem;
+  font-family: "IBM Plex Sans", monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: var(--bone);
+  flex-wrap: wrap;
+}
+
+.inst-banner span b {
+  color: var(--highlight);
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border);
+  padding: 0.35rem 0.9rem;
+  border-radius: 9999px;
+  margin-bottom: 1.2rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--highlight);
+}
+
+.hero-stats-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin: 1.6rem 0;
+  width: 100%;
+}
+
+.hero-stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  padding: 0.8rem 1rem;
+  border-radius: 4px;
+  border-left: 3px solid var(--glow);
+}
+
+.hero-stat-card .val {
+  font-family: "Outfit", sans-serif;
+  font-size: 1.65rem;
+  font-weight: 600;
+  color: var(--glow);
+  line-height: 1.1;
+}
+
+.hero-stat-card .lbl {
+  font-family: "Space Grotesk", "IBM Plex Sans", monospace;
+  font-size: 0.72rem;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 0.2rem;
+}
+
+.hero .sub {
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: var(--bone);
+  max-width: 48ch;
+  margin: 1rem 0 1.2rem;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+/* Countdown */
+#count {
+  display: flex;
+  gap: clamp(0.7rem, 2.5vw, 1.8rem);
+  margin-bottom: 1.8rem;
+}
+
+#count div {
+  font-family: "Outfit", sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.8rem, 3.8vw, 2.6rem);
+  line-height: 1.1;
+  color: var(--bone);
+  text-shadow: 0 0 16px var(--glow-shadow);
+}
+
+#count small {
+  display: block;
+  font: 400 0.72rem "Plus Jakarta Sans", sans-serif;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 0.2rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  align-items: center;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--btn-bg);
+  color: var(--btn-color);
+  font: 600 0.92rem "Outfit", sans-serif;
+  letter-spacing: 0.03em;
+  padding: 0.75rem 1.6rem;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+  box-shadow: 0 4px 18px var(--glow-shadow);
+  cursor: pointer;
+  border: none;
+}
+
+.btn:hover {
+  background: var(--accent);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 30px var(--glow-shadow);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--bone);
+  box-shadow: none;
+  border: 1px solid var(--glass-border);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   VILLAIN TRACK CARDS (ENTIRE CARD CLICKABLE)
+   ========================================================================== */
+.villain-tracks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.8rem;
+  max-width: 1300px;
+  margin-top: 2rem;
+}
+
+a.villain-track-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 6px;
+  padding: 2.2rem;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(14px);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+a.villain-track-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: var(--track-color);
+  transition: height 0.2s ease;
+}
+
+a.villain-track-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--track-color);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 30px var(--track-glow);
+  background: rgba(0, 0, 0, 0.75);
+}
+
+a.villain-track-card:hover::before {
+  height: 8px;
+}
+
+.villain-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.track-num {
+  font-family: "Outfit", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--track-color);
+  line-height: 1;
+}
+
+.villain-avatar-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--track-color);
+  padding: 0.3rem 0.7rem;
+  border-radius: 9999px;
+  font-family: "Space Grotesk", "IBM Plex Sans", monospace;
+  font-size: 0.75rem;
+  color: var(--track-color);
+  font-weight: 500;
+}
+
+.track-title {
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: var(--bone);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+a.villain-track-card:hover .track-title {
+  color: var(--track-color);
+}
+
+.villain-name {
+  font-size: 0.95rem;
+  color: var(--highlight);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.track-dept {
+  background: rgba(0, 0, 0, 0.4);
+  border-left: 3px solid var(--track-color);
+  padding: 0.5rem 0.8rem;
+  font-family: "Plus Jakarta Sans", monospace;
+  font-size: 0.8rem;
+  color: var(--dim);
+  margin-bottom: 1.2rem;
+  border-radius: 2px;
+}
+
+.track-dept b {
+  color: var(--bone);
+}
+
+.villain-quote {
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--bone);
+  margin-bottom: 1.2rem;
+  line-height: 1.5;
+  border-left: 2px solid rgba(255, 255, 255, 0.15);
+  padding-left: 0.8rem;
+}
+
+.track-desc {
+  font-size: 0.95rem;
+  color: var(--dim);
+  line-height: 1.6;
+  margin-bottom: 1.4rem;
+}
+
+.track-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--track-color);
+  font-family: "Outfit", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: transform 0.2s ease;
+}
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: transform 0.2s ease;
+}
+
+a.villain-track-card:hover .track-card-cta {
+  transform: translateX(6px);
+}
+
+/* ==========================================================================
+   IMPORTANT NOTICE: BRING YOUR OWN HARDWARE BANNER
+   ========================================================================== */
+.facility-guideline-banner {
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-left: 5px solid var(--highlight);
+  border-radius: 6px;
+  padding: 1.8rem 2.2rem;
+  margin: 2.5rem 0;
+  backdrop-filter: blur(12px);
+  max-width: 1200px;
+}
+
+.facility-guideline-banner h3 {
+  color: var(--highlight);
+  font-size: 1.6rem;
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.facility-guideline-banner p {
+  color: var(--bone);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  max-width: none;
+}
+
+.facility-guideline-banner ul {
+  list-style: none;
+  margin-top: 0.8rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.8rem;
+}
+
+.facility-guideline-banner li {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.7rem 1rem;
+  border-radius: 3px;
+  border-left: 2px solid var(--highlight);
+  font-size: 0.9rem;
+  color: var(--dim);
+}
+
+.facility-guideline-banner li b {
+  color: var(--bone);
+}
+
+/* ==========================================================================
+   EVALUATION ROADMAP: 3+1 ROUNDS
+   ========================================================================== */
+.rounds-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.4rem;
+  max-width: 1300px;
+  margin-top: 2rem;
+}
+
+.round-card {
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  padding: 1.8rem;
+  border-radius: 4px;
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.round-tag {
+  font-family: "IBM Plex Sans", monospace;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--highlight);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.round-title {
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--bone);
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+
+.round-dates {
+  font-family: "Outfit", sans-serif;
+  font-size: 1.05rem;
+  color: var(--glow);
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.round-card.offline-final {
+  border: 2px solid var(--glow);
+  box-shadow: 0 0 25px var(--glow-shadow);
+  background: rgba(14, 28, 19, 0.95);
+}
+
+/* ==========================================================================
+   AI EMERGENCY CO-PILOT TERMINAL (BRAINSTORMING MODE)
+   ========================================================================== */
+.ai-section {
+  max-width: 1050px;
+}
+
+.terminal-container {
+  background: var(--terminal-bg);
+  border: 1px solid var(--terminal-border);
+  border-radius: 6px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px var(--glow-shadow);
+  overflow: hidden;
+  margin-top: 2rem;
+  backdrop-filter: blur(16px);
+}
+
+.terminal-header {
+  background: rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid var(--terminal-border);
+  padding: 0.75rem 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "IBM Plex Sans", monospace;
+  font-size: 0.78rem;
+  color: var(--dim);
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.terminal-dot.red { background: #ef4444; }
+.terminal-dot.yellow { background: #f59e0b; }
+.terminal-dot.green { background: #10b981; }
+
+.terminal-body {
+  padding: 1.8rem;
+}
+
+.terminal-intro {
+  color: var(--dim);
+  font-family: "IBM Plex Sans", monospace;
+  font-size: 0.88rem;
+  margin-bottom: 1.4rem;
+  line-height: 1.6;
+}
+
+.terminal-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 1rem;
+  margin-bottom: 1.4rem;
+}
+
+@media (max-width: 768px) {
+  .terminal-controls {
+    grid-template-columns: 1fr;
+  }
+}
+
+.terminal-select, .terminal-input {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--glass-border);
+  color: var(--bone);
+  padding: 0.75rem 1rem;
+  font-family: "IBM Plex Sans", monospace;
+  font-size: 0.88rem;
+  border-radius: 3px;
+  outline: none;
+}
+
+.terminal-select:focus, .terminal-input:focus {
+  border-color: var(--glow);
+}
+
+.terminal-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.preset-chip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--dim);
+  font-family: "IBM Plex Sans", monospace;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.preset-chip:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--glow);
+  border-color: var(--glow);
+}
+
+.terminal-output {
+  background: rgba(0, 0, 0, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  padding: 1.4rem;
+  font-family: "IBM Plex Sans", monospace;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--bone);
+  min-height: 140px;
+}
+
+.terminal-output .prompt-prefix {
+  color: var(--glow);
+  font-weight: 600;
+}
+
+.cursor-blink {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background: var(--glow);
+  vertical-align: middle;
+  margin-left: 2px;
+  animation: cursor-blink 1s infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ==========================================================================
+   SCHEDULE TABLE & PRIZES
+   ========================================================================== */
+.schedule-table-wrap {
+  overflow-x: auto;
+  margin-top: 1.5rem;
+  max-width: 900px;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+}
+
+.schedule-table th, .schedule-table td {
+  padding: 1rem 1.4rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.schedule-table th {
+  font-family: "Outfit", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--highlight);
+  letter-spacing: 0.04em;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.schedule-table time {
+  font-family: "Outfit", sans-serif;
+  font-size: 1.15rem;
+  color: var(--glow);
+  font-weight: 600;
+}
+
+.prizes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin-top: 2rem;
+}
+
+.prize-card {
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-left: 4px solid var(--glow);
+  padding: 1.8rem 2rem;
+  border-radius: 4px;
+}
+
+.prize-amount {
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 600;
+  color: var(--glow);
+  line-height: 1.1;
+  margin-bottom: 0.4rem;
+}
+
+/* Partners & Hosts Strip */
+.partners-section {
+  margin-top: 3rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--soot);
+}
+
+.partners-title {
+  font-family: "Space Grotesk", "IBM Plex Sans", monospace;
+  font-size: 0.8rem;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.2rem;
+}
+
+.partners-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem 2.5rem;
+  align-items: center;
+}
+
+.partner-badge {
+  font-family: "Outfit", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--bone);
+  opacity: 0.85;
+  transition: opacity 0.2s, color 0.2s;
+}
+
+.partner-badge:hover {
+  opacity: 1;
+  color: var(--glow);
+}
+
+/* Registration Form */
+.reg-box {
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  padding: 2.2rem;
+  max-width: 650px;
+  margin-top: 1.5rem;
+  border-radius: 4px;
+  backdrop-filter: blur(14px);
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  font-family: "IBM Plex Sans", monospace;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 0.4rem;
+}
+
+.form-control {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--glass-border);
+  color: var(--bone);
+  padding: 0.8rem 1rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  border-radius: 2px;
+  outline: none;
+}
+
+.form-control:focus {
+  border-color: var(--glow);
+}
+
+/* Footer */
+footer {
+  position: relative;
+  z-index: 2;
+  padding: 3rem 6vw;
+  color: var(--dim);
+  border-top: 1px solid var(--soot);
+  background: var(--ash);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .telemetry-data { display: none; }
+}

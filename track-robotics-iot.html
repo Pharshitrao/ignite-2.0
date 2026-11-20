@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="track-robotics">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Track 01: Robotics, IoT and Automation (PURPLE) — IGNITE 2.0 | PESCE Mandya</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --glow: #c084fc;
+      --accent: #a855f7;
+      --highlight: #38bdf8;
+      --card-bg: rgba(22, 12, 41, 0.92);
+      --glass-border: rgba(192, 132, 252, 0.45);
+    }
+    .track-hero {
+      padding-top: 14vh;
+      min-height: 85vh;
+    }
+    .character-showcase {
+      display: grid;
+      grid-template-columns: 0.9fr 1.3fr;
+      gap: 2.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-left: 6px solid #c084fc;
+      border-radius: 8px;
+      padding: 2.5rem;
+      margin: 2.5rem 0;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(192, 132, 252, 0.3);
+      align-items: center;
+    }
+    .character-photo-frame {
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px rgba(192, 132, 252, 0.4);
+      background: #000;
+    }
+    .character-photo-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: contrast(1.1);
+    }
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #c084fc;
+      text-decoration: none;
+      font-family: "IBM Plex Sans", monospace;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+      transition: transform 0.2s;
+    }
+    .nav-back:hover {
+      transform: translateX(-4px);
+    }
+    .domain-scope-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin: 1.8rem 0;
+    }
+    .domain-scope-card {
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 4px;
+      padding: 1.5rem;
+      border-left: 3px solid #c084fc;
+    }
+    .domain-scope-card h4 {
+      color: #c084fc;
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+    }
+    @media (max-width: 850px) {
+      .character-showcase { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="theme-purple">
+
+  <!-- Header Ticker -->
+  <header class="telemetry-bar">
+    <div class="telemetry-status">
+      <span class="pulse-dot" style="background:#c084fc; box-shadow:0 0 10px #c084fc;"></span>
+      <span>TRACK 01 // ROBOTICS, IoT AND AUTOMATION // PURPLE SPECTRUM</span>
+    </div>
+    <div class="telemetry-data">
+      <span>VENUE: <b>AICTE IDEA LAB, PESCE</b></span>
+      <span>PRIZE: <b>₹15,000 CASH</b></span>
+      <span>DATE: <b>11 DEC 2026</b></span>
+    </div>
+    <div class="header-controls">
+      <a class="audio-btn" href="index.html" style="text-decoration:none;">
+        ← MAIN MISSION
+      </a>
+    </div>
+  </header>
+
+  <!-- 3D WebGL Background Canvas -->
+  <canvas id="scene" aria-hidden="true"></canvas>
+
+  <main>
+    <section class="track-hero">
+      <a class="nav-back" href="index.html">← RETURN TO IGNITE 2.0 OVERVIEW</a>
+      
+      <div class="hero-tag" style="color:#38bdf8; border-color:rgba(192, 132, 252, 0.4);">
+        <span>🤖 Official Theme 01 · Robotics, AI, Mech, ECE, VLSI & EEE</span>
+      </div>
+
+      <h1 style="text-shadow:0 0 60px rgba(192, 132, 252, 0.5);">ROBOTICS, IoT & AUTOMATION</h1>
+      <p class="sub" style="color:#faf5ff;">Engineering autonomous cybernetics, edge-embedded TinyML sensors, robotic swarm protocols, and industrial automation under extreme environments.</p>
+
+      <!-- CHARACTER SHOWCASE WITH DOCTOR DOOM / PURPLE CLOAK POSTER ART -->
+      <div class="character-showcase">
+        <div class="character-photo-frame">
+          <img src="assets/images/doom-cloaks.jpg" alt="Doctor Doom and the Purple Cloaked Cybernetic Syndicate">
+          <div style="padding:0.8rem; background:rgba(0,0,0,0.85); text-align:center; font-family:'IBM Plex Sans',monospace; font-size:0.75rem; color:#38bdf8;">
+            PURPLE CLOAKED CYBERNETIC SYNDICATE
+          </div>
+        </div>
+
+        <div>
+          <div style="font-family:'IBM Plex Sans',monospace; font-size:0.82rem; color:#c084fc; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.6rem;">// THEME OVERSEER: THE CYBER SENTINEL</div>
+          <h2 style="font-size:2.4rem; line-height:1; margin-bottom:1rem; color:#faf5ff;">"FLESH WEAKENS. INTELLIGENT HARDWARE PREVAILS."</h2>
+          <p style="font-style:italic; color:#e2e8f0; margin-bottom:1.2rem; line-height:1.6;">
+            "Automation is the bedrock of civilization. In this track, participants define their own challenges — from mobile autonomous rovers to industrial smart IoT nodes. Build hardware that functions with precision."
+          </p>
+          <div style="background:rgba(0,0,0,0.4); border-left:3px solid #c084fc; padding:0.8rem 1rem; border-radius:2px; font-family:'IBM Plex Sans',monospace; font-size:0.85rem; color:#a89cb8;">
+            <b>ALIGNED DEPARTMENTS:</b> Robotics & AI, Mechanical Engineering, ECE, ECE (VLSI), and EEE<br>
+            <b>SUPERVISING FACULTY:</b> Department-Level Faculty Coordinator (PESCE Mandya)
+          </div>
+        </div>
+      </div>
+
+      <!-- OPEN PROBLEM STATEMENT DIRECTIVE -->
+      <div style="background:rgba(192, 132, 252, 0.08); border:1px solid var(--glass-border); border-left:5px solid #c084fc; padding:1.8rem; border-radius:4px; margin-top:2rem;">
+        <h3 style="color:#c084fc; margin-bottom:0.4rem;">🎯 Open Problem Statement Policy</h3>
+        <p style="color:#faf5ff; margin:0; line-height:1.6;">
+          <b>No fixed problem statements are prescribed.</b> Participating teams have total freedom to identify any engineering challenge within <b>Robotics, IoT and Automation</b> and present their own working hardware-software build.
+        </p>
+      </div>
+
+      <!-- BROAD SUGGESTED DOMAINS -->
+      <h2 style="margin-top:2.5rem;">Suggested Focus Domains <span class="sub-tag">Explore & Choose Your Problem</span></h2>
+      <p>Use these overarching focus areas to guide your team's project concept:</p>
+
+      <div class="domain-scope-grid">
+        <div class="domain-scope-card">
+          <h4>Autonomous Ground & Aerial Robotics</h4>
+          <p>Unmanned ground vehicles (UGVs), micro-rover pathfinding, obstacle avoidance, robotic arm kinematics, computer-vision payload handlers, and drone landing telemetry.</p>
+        </div>
+
+        <div class="domain-scope-card">
+          <h4>Industrial IoT & Predictive Maintenance</h4>
+          <p>Vibration analysis on rotating machines, thermal hot-spot detection, smart factory automation, energy metering nodes, and edge fault classification.</p>
+        </div>
+
+        <div class="domain-scope-card">
+          <h4>Air-Gapped & Low-Power Mesh Networks</h4>
+          <p>LoRa/Zigbee sensor networks, emergency telemetry relays, environmental hazard beacons, and decentralized wireless monitoring systems.</p>
+        </div>
+
+        <div class="domain-scope-card">
+          <h4>Assistive & Medical Automation</h4>
+          <p>Bionic prosthetic limbs, exoskeleton actuators, automated triage dispensers, patient vital monitoring beds, and smart wheelchair navigation.</p>
+        </div>
+      </div>
+
+      <!-- COMPONENT POLICY (STANDARD HACKATHON) -->
+      <div class="facility-guideline-banner">
+        <h3>⚠️ Component & Hardware Policy: Bring Your Own Equipment</h3>
+        <p>
+          IGNITE 2.0 is a standard technical hackathon. The organizers do <b>not</b> supply microcontrollers, motors, sensors, or component kits.
+        </p>
+        <ul>
+          <li><b>Components & Kits:</b> Participating teams must bring their own development boards (ESP32, Arduino, Raspberry Pi, STM32), motor drivers, sensors, breadboards, batteries, and soldering tools.</li>
+          <li><b>Venue Provision:</b> AICTE IDEA Lab provides high-speed Wi-Fi, electricity plug points at each team bench, seating, project mentoring, and standard hackathon facilities.</li>
+        </ul>
+      </div>
+
+      <!-- ACTIONS -->
+      <div style="display:flex; gap:1.2rem; margin-top:2rem; flex-wrap:wrap;">
+        <a class="btn" href="index.html#register" style="background:#c084fc; color:#17072a;">Enlist for Robotics & IoT</a>
+        <a class="btn btn-secondary" href="index.html#ai-co-pilot">Brainstorm with AI Co-Pilot</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>IGNITE 2.0 · Track 01: Robotics, IoT and Automation · AICTE IDEA Lab, PESCE Mandya</div>
+    <div style="font-size:0.85rem; opacity:0.75;"><a href="index.html" style="color:#c084fc;">← Back to Main Command</a></div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/themes.js"></script>
+  <script src="js/scene.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const { initScene, wireAudioInteractions } = window.Doomsday || {};
+      const purpleTheme = {
+        id: 'track-robotics',
+        three: {
+          fog: 0x090514,
+          ambient: 0x1b0e33,
+          lava: { r: 0.75, g: 0.32, b: 1.0 },
+          crustBaseHsl: { h: 0.77, s: 0.38, l: 0.05 },
+          emissive: 0x6b21a8,
+          emissiveIntensity: 0.28,
+          wireframe: 0xc084fc,
+          wireOpacity: 0.2,
+          ringColor: 0x38bdf8,
+          light1: 0xc084fc,
+          light2: 0x38bdf8,
+          halo: { inner: 'rgba(192, 132, 252, 0.85)', mid: 'rgba(107, 33, 168, 0.35)' },
+          embers: 0xd8b4fe,
+          asteroids: 0x312440
+        }
+      };
+      if (initScene) initScene(purpleTheme);
+      if (wireAudioInteractions) wireAudioInteractions();
+    });
+  </script>
+</body>
+</html>

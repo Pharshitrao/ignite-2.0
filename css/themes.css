@@ -1,0 +1,98 @@
+/* ==========================================================================
+   IGNITE 2.0 — DOOMSDAY EDITION: THEMES & COLOR ASSIGNMENTS
+   - GREEN  : Sustainable Development (Planetary Equilibrium / Gaia Control)
+   - PURPLE : Robotics, IoT and Automation (The Cyber Sentinel Hive)
+   - RED    : Software, Agentic AI and Web Development (Ultron Sentient Core)
+   ========================================================================== */
+
+:root {
+  /* Default: Green for Sustainable Development */
+  --theme-id: "track-sustainability";
+  --ash: #06090e;
+  --soot: #0c131b;
+  --card-bg: rgba(10, 18, 24, 0.72);
+  --glow: #34d399;           /* Emerald Bio-Green */
+  --glow-rgb: 52, 211, 153;
+  --accent: #10b981;
+  --highlight: #facc15;      /* Solar Gold Accent */
+  --highlight-rgb: 250, 204, 21;
+  --deep: #047857;
+  --bone: #f1f5f9;
+  --dim: #94a3b8;
+  --glass-border: rgba(52, 211, 153, 0.32);
+  --btn-bg: #34d399;
+  --btn-color: #022c22;
+  --glow-shadow: rgba(52, 211, 153, 0.35);
+  --telemetry-bg: rgba(6, 12, 16, 0.88);
+  --terminal-bg: #071216;
+  --terminal-border: rgba(52, 211, 153, 0.45);
+}
+
+/* 1. GREEN THEME: SUSTAINABLE DEVELOPMENT */
+[data-theme="track-sustainability"],
+body.theme-green {
+  --ash: #060a0e;
+  --soot: #0c151a;
+  --card-bg: rgba(10, 20, 22, 0.75);
+  --glow: #34d399;           /* Radiant Emerald */
+  --glow-rgb: 52, 211, 153;
+  --accent: #10b981;
+  --highlight: #facc15;      /* Solar Gold */
+  --highlight-rgb: 250, 204, 21;
+  --deep: #047857;
+  --bone: #f1f5f9;
+  --dim: #94a3b8;
+  --glass-border: rgba(52, 211, 153, 0.35);
+  --btn-bg: #34d399;
+  --btn-color: #022c22;
+  --glow-shadow: rgba(52, 211, 153, 0.35);
+  --telemetry-bg: rgba(6, 12, 16, 0.88);
+  --terminal-bg: #071216;
+  --terminal-border: rgba(52, 211, 153, 0.45);
+}
+
+/* 2. PURPLE THEME: ROBOTICS, IoT AND AUTOMATION */
+[data-theme="track-robotics"],
+body.theme-purple {
+  --ash: #080712;
+  --soot: #110d24;
+  --card-bg: rgba(16, 12, 32, 0.75);
+  --glow: #c084fc;           /* Cyber Cosmic Purple */
+  --glow-rgb: 192, 132, 252;
+  --accent: #a855f7;
+  --highlight: #38bdf8;      /* Electro Pulse Cyan */
+  --highlight-rgb: 56, 189, 248;
+  --deep: #6b21a8;
+  --bone: #f8fafc;
+  --dim: #a89cb8;
+  --glass-border: rgba(192, 132, 252, 0.35);
+  --btn-bg: #c084fc;
+  --btn-color: #17072a;
+  --glow-shadow: rgba(192, 132, 252, 0.35);
+  --telemetry-bg: rgba(9, 7, 20, 0.88);
+  --terminal-bg: #0f0a20;
+  --terminal-border: rgba(192, 132, 252, 0.45);
+}
+
+/* 3. RED THEME: SOFTWARE, AGENTIC AI AND WEB DEVELOPMENT */
+[data-theme="track-software"],
+body.theme-red {
+  --ash: #0a0709;
+  --soot: #180d12;
+  --card-bg: rgba(22, 11, 16, 0.75);
+  --glow: #ef4444;           /* Sentient AI Crimson */
+  --glow-rgb: 239, 68, 68;
+  --accent: #f87171;
+  --highlight: #fbbf24;      /* Cybernetic Core Amber */
+  --highlight-rgb: 251, 191, 36;
+  --deep: #991b1b;
+  --bone: #f8fafc;
+  --dim: #b89c9c;
+  --glass-border: rgba(239, 68, 68, 0.35);
+  --btn-bg: #ef4444;
+  --btn-color: #ffffff;
+  --glow-shadow: rgba(239, 68, 68, 0.35);
+  --telemetry-bg: rgba(12, 7, 10, 0.88);
+  --terminal-bg: #14080d;
+  --terminal-border: rgba(239, 68, 68, 0.45);
+}
