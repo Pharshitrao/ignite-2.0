@@ -230,7 +230,7 @@
     // =========================================================================
     doomMaskGroup = new THREE.Group();
     // Default position in upper quadrant, tracks cursor
-    doomMaskGroup.position.set(3.4, 1.4, 2.5);
+    doomMaskGroup.position.set(-3.4, 1.4, 2.5);
     scene.add(doomMaskGroup);
 
     // Metallic Faceplate
@@ -708,7 +708,7 @@
 
       // Adjust Doom Mask position for mobile vs desktop
       if (w > 850) {
-        doomMaskGroup.position.set(3.4, 1.2, 2.5);
+        doomMaskGroup.position.set(-3.4, 1.2, 2.5);
       } else {
         doomMaskGroup.position.set(0, 2.2, 1.2);
         doomMaskGroup.scale.setScalar(0.75);
