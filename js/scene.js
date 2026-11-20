@@ -229,8 +229,8 @@
     // TRAILER FEATURE 3: 3D DOCTOR DOOM MASK / SENTINEL CYBER-HELM
     // =========================================================================
     doomMaskGroup = new THREE.Group();
-    // Default position in upper quadrant, tracks cursor
-    doomMaskGroup.position.set(-3.4, 1.4, 2.5);
+    // Default position in far-left edge of screen, completely clear of text
+    doomMaskGroup.position.set(-6.2, 1.4, 2.5);
     scene.add(doomMaskGroup);
 
     // Metallic Faceplate
@@ -706,12 +706,16 @@
       singularityGroup.position.x = xPos;
       arcaneSealGroup.position.x = xPos;
 
-      // Adjust Doom Mask position for mobile vs desktop
-      if (w > 850) {
-        doomMaskGroup.position.set(-3.4, 1.2, 2.5);
+      // Adjust Doom Mask position for mobile vs desktop (placed far to the left margin to keep text unobstructed)
+      if (w > 1200) {
+        doomMaskGroup.position.set(-6.2, 1.2, 2.5);
+        doomMaskGroup.scale.setScalar(0.9);
+      } else if (w > 850) {
+        doomMaskGroup.position.set(-5.2, 1.2, 2.5);
+        doomMaskGroup.scale.setScalar(0.8);
       } else {
-        doomMaskGroup.position.set(0, 2.2, 1.2);
-        doomMaskGroup.scale.setScalar(0.75);
+        doomMaskGroup.position.set(0, 2.4, 1.2);
+        doomMaskGroup.scale.setScalar(0.65);
       }
     }
     window.addEventListener('resize', onResize);
