@@ -96,7 +96,7 @@
     const formattedLog = `
 [IGNITE 2.0 // THEME IDEATION CO-PILOT: ONLINE]
 [SPECTRUM: ${info.color} // THEME: ${info.theme.toUpperCase()}${queryTag}]
---------------------------------------------------------------------------------
+----------------------------------------
 POLICY NOTICE: OPEN PROBLEM STATEMENT
 → No fixed problem is prescribed. You and your squad choose your problem!
 
@@ -112,7 +112,7 @@ RECOMMENDED TECH / HARDWARE STACK:
 REMINDER:
 Bring your own development boards, sensors, and hardware.
 High-speed Wi-Fi, electricity plug points, and work tables are provided at the AICTE IDEA Lab.
---------------------------------------------------------------------------------
+----------------------------------------
 [STATUS: READY FOR THE 11 DECEMBER OFFLINE FINALS AT PESCE, MANDYA]
     `.trim();
 

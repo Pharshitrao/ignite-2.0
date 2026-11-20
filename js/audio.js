@@ -23,6 +23,104 @@
   let bgAudioEl = null;
   let isUsingAudioFile = false;
 
+  // Official Avengers: Doomsday YouTube Audio Integration (https://youtu.be/xE2xV6m1q50)
+  const YOUTUBE_TRACK_ID = 'xE2xV6m1q50';
+  let ytPlayer = null;
+  let isYtReady = false;
+  let ytPlayerInitStarted = false;
+
+  function loadYouTubeAPI() {
+    if (ytPlayerInitStarted) return;
+    ytPlayerInitStarted = true;
+
+    let container = document.getElementById('yt-player-container');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'yt-player-container';
+      document.body.appendChild(container);
+    }
+
+    const prevReady = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = function() {
+      if (typeof prevReady === 'function') {
+        try { prevReady(); } catch (e) {}
+      }
+      initYouTubePlayer();
+    };
+
+    if (window.YT && window.YT.Player) {
+      initYouTubePlayer();
+    } else {
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScript = document.getElementsByTagName('script')[0];
+      if (firstScript && firstScript.parentNode) {
+        firstScript.parentNode.insertBefore(tag, firstScript);
+      } else {
+        document.head.appendChild(tag);
+      }
+    }
+  }
+
+  function initYouTubePlayer() {
+    if (ytPlayer || !window.YT || !window.YT.Player) return;
+    try {
+      ytPlayer = new YT.Player('yt-player-container', {
+        height: '1',
+        width: '1',
+        videoId: YOUTUBE_TRACK_ID,
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          disablekb: 1,
+          enablejsapi: 1,
+          fs: 0,
+          loop: 1,
+          playlist: YOUTUBE_TRACK_ID,
+          playsinline: 1,
+          rel: 0
+        },
+        events: {
+          onReady: function(e) {
+            isYtReady = true;
+            try {
+              e.target.setVolume(Math.round(currentVolume * 100));
+            } catch (err) {}
+            if (isPlayingTheme) {
+              try { e.target.playVideo(); } catch (err) {}
+            }
+          },
+          onStateChange: function(e) {
+            if (e.data === YT.PlayerState.PLAYING) {
+              isPlayingTheme = true;
+              isSoundEnabled = true;
+              stopProceduralTheme();
+              if (bgAudioEl) {
+                try { bgAudioEl.pause(); } catch (err) {}
+              }
+              updateUIState(true);
+            } else if (e.data === YT.PlayerState.PAUSED) {
+              isPlayingTheme = false;
+              updateUIState(false);
+            } else if (e.data === YT.PlayerState.ENDED) {
+              try {
+                e.target.seekTo(0);
+                e.target.playVideo();
+              } catch (err) {}
+            }
+          },
+          onError: function() {
+            if (isPlayingTheme && !isUsingAudioFile) {
+              scheduleDoomsdayTheme();
+            }
+          }
+        }
+      });
+    } catch (e) {
+      console.warn('YouTube theme player init error', e);
+    }
+  }
+
   // Procedural Synthesizer State
   let synthLoopTimeout = null;
   let activeNodes = [];
@@ -260,7 +358,23 @@
     isPlayingTheme = true;
     isSoundEnabled = true;
 
-    // Check if background audio element can play MP3
+    // 1. Prioritize official YouTube audio stream (https://youtu.be/xE2xV6m1q50)
+    if (ytPlayer && isYtReady) {
+      try {
+        ytPlayer.setVolume(Math.round(currentVolume * 100));
+        ytPlayer.playVideo();
+        stopProceduralTheme();
+        if (bgAudioEl) {
+          try { bgAudioEl.pause(); } catch (e) {}
+        }
+        updateUIState(true);
+        return;
+      } catch (e) {}
+    } else {
+      loadYouTubeAPI();
+    }
+
+    // 2. Check if background audio element can play local MP3
     bgAudioEl = document.getElementById('bg-music');
     if (!bgAudioEl) {
       bgAudioEl = new Audio('assets/audio/avengers-doomsday-theme.mp3');
@@ -279,14 +393,18 @@
         stopProceduralTheme();
         updateUIState(true);
       }).catch(err => {
-        // If MP3 file not found or blocked, fall back to procedural synthesizer
+        // If MP3 file not found, fall back to procedural synthesizer until YouTube connects
         isUsingAudioFile = false;
-        scheduleDoomsdayTheme();
+        if (!isYtReady) {
+          scheduleDoomsdayTheme();
+        }
         updateUIState(true);
       });
     } else {
       isUsingAudioFile = false;
-      scheduleDoomsdayTheme();
+      if (!isYtReady) {
+        scheduleDoomsdayTheme();
+      }
       updateUIState(true);
     }
   }
@@ -295,6 +413,9 @@
     isPlayingTheme = false;
     isSoundEnabled = false;
 
+    if (ytPlayer && isYtReady) {
+      try { ytPlayer.pauseVideo(); } catch (e) {}
+    }
     if (bgAudioEl) {
       try { bgAudioEl.pause(); } catch (e) {}
     }
@@ -312,6 +433,9 @@
 
   function setVolume(val) {
     currentVolume = Math.max(0, Math.min(1, parseFloat(val)));
+    if (ytPlayer && isYtReady) {
+      try { ytPlayer.setVolume(Math.round(currentVolume * 100)); } catch (e) {}
+    }
     if (bgAudioEl) {
       bgAudioEl.volume = currentVolume;
     }
@@ -417,6 +541,9 @@
   }
 
   function wireAudioInteractions() {
+    // Preload YouTube API for official theme audio
+    loadYouTubeAPI();
+
     // Restore saved volume
     try {
       const savedVol = localStorage.getItem('doomsday_audio_volume');

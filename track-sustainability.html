@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="css/themes.css?v=2.2">
-  <link rel="stylesheet" href="css/style.css?v=2.2">
+  <link rel="stylesheet" href="css/themes.css?v=2.5">
+  <link rel="stylesheet" href="css/style.css?v=2.5">
   <style>
     :root {
       --glow: #34d399;
@@ -212,8 +212,9 @@
     <div style="font-size:0.85rem; opacity:0.75;"><a href="index.html" style="color:#34d399;">← Back to Main Command</a></div>
   </footer>
 
-  <!-- Audio Element for Official Theme (Assets/Audio) -->
+  <!-- Audio Element for Official Theme & YouTube Streaming Anchor -->
   <audio id="bg-music" src="assets/audio/avengers-doomsday-theme.mp3" preload="auto" loop></audio>
+  <div id="yt-player-container"></div>
 
   <!-- Floating Doomsday Audio Player HUD (Avengers: Doomsday Official Theme) -->
   <div class="doomsday-audio-hud" id="doomsday-audio-hud" title="Avengers: Doomsday Official Theme Player">
@@ -231,9 +232,9 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="js/audio.js"></script>
+  <script src="js/audio.js?v=2.5"></script>
   <script src="js/themes.js"></script>
-  <script src="js/scene.js?v=2.2"></script>
+  <script src="js/scene.js?v=2.5"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const { initScene, wireAudioInteractions } = window.Doomsday || {};
