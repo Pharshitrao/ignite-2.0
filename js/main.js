@@ -54,33 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // INTERACTIVE DUAL-POSTER HOLOGRAPHIC SWITCHER & 3D TILT
+  // HERO POSTER 3D PERSPECTIVE TILT
   // =========================================================================
-  const posterTabs = document.querySelectorAll('.poster-tab-btn');
-  const posterFrames = document.querySelectorAll('.hero-poster-frame');
-
-  posterTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = tab.getAttribute('data-poster');
-      
-      posterTabs.forEach(t => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
-      });
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-
-      posterFrames.forEach(f => {
-        if (f.id === `poster-${target}`) {
-          f.classList.add('active');
-        } else {
-          f.classList.remove('active');
-        }
-      });
-    });
-  });
-
-  // 3D Holographic Perspective Tilt on Hover
   const tiltContainer = document.getElementById('poster-tilt-container');
   if (tiltContainer) {
     tiltContainer.addEventListener('mousemove', (e) => {

@@ -7,7 +7,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="css/themes.css">
   <link rel="stylesheet" href="css/style.css">
@@ -103,6 +103,14 @@
       <span>DATE: <b>11 DEC 2026</b></span>
     </div>
     <div class="header-controls">
+      <button class="audio-btn" id="audio-toggle" aria-label="Toggle Avengers Doomsday Theme" aria-pressed="false" title="Toggle Avengers: Doomsday Official Theme">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <line x1="23" y1="9" x2="17" y2="15"></line>
+          <line x1="17" y1="9" x2="23" y2="15"></line>
+        </svg>
+        THEME OFF
+      </button>
       <a class="audio-btn" href="index.html" style="text-decoration:none;">
         ← MAIN MISSION
       </a>
@@ -126,7 +134,7 @@
       <!-- CHARACTER SHOWCASE WITH DOCTOR DOOM POSTER ART -->
       <div class="character-showcase">
         <div class="character-photo-frame">
-          <img src="assets/images/doom-throne.jpg" alt="Doctor Doom Throne Room - Sovereign Agentic Intelligence">
+          <img src="assets/images/doom-throne.jpg" alt="Doctor Doom Cathedral Throne Room - Sovereign Agentic Intelligence">
           <div style="padding:0.8rem; background:rgba(0,0,0,0.85); text-align:center; font-family:'IBM Plex Sans',monospace; font-size:0.75rem; color:#fbbf24;">
             SOVEREIGN CRIMSON AI THRONE
           </div>
@@ -134,7 +142,7 @@
 
         <div>
           <div style="font-family:'IBM Plex Sans',monospace; font-size:0.82rem; color:#ef4444; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.6rem;">// THEME OVERSEER: DOCTOR DOOM</div>
-          <h2 style="font-size:2.4rem; line-height:1; margin-bottom:1rem; color:#fef2f2;">"SOFTWARE DOES NOT OBEY STRINGS. IT REASONS."</h2>
+          <h2 style="font-size:clamp(1.4rem, 4vw, 2.2rem); line-height:1.2; margin-bottom:1rem; color:#fef2f2;">"SOFTWARE DOES NOT OBEY STRINGS. IT REASONS."</h2>
           <p style="font-style:italic; color:#e2e8f0; margin-bottom:1.2rem; line-height:1.6;">
             "Static apps are relics of the past. In this track, participants have complete creative autonomy to engineer intelligent agents, offline-first web apps, or web systems that solve pressing real-world bottlenecks."
           </p>
@@ -203,6 +211,24 @@
     <div>IGNITE 2.0 · Track 03: Agentic AI & Web Development · AICTE IDEA Lab, PESCE Mandya</div>
     <div style="font-size:0.85rem; opacity:0.75;"><a href="index.html" style="color:#ef4444;">← Back to Main Command</a></div>
   </footer>
+
+  <!-- Audio Element for Official Theme (Assets/Audio) -->
+  <audio id="bg-music" src="assets/audio/avengers-doomsday-theme.mp3" preload="auto" loop></audio>
+
+  <!-- Floating Doomsday Audio Player HUD (Avengers: Doomsday Official Theme) -->
+  <div class="doomsday-audio-hud" id="doomsday-audio-hud" title="Avengers: Doomsday Official Theme Player">
+    <button class="hud-play-btn" id="hud-play-btn" type="button" aria-label="Play or Pause Avengers Doomsday Theme">
+      ▶
+    </button>
+    <div class="hud-track-info">
+      <div class="hud-track-title">AVENGERS: DOOMSDAY THEME</div>
+      <div class="hud-track-artist">ALAN SILVESTRI · INCURSION</div>
+    </div>
+    <div class="hud-volume-wrap">
+      <span class="hud-vol-icon">🔊</span>
+      <input type="range" class="hud-vol-slider" id="hud-vol-slider" min="0" max="1" step="0.05" value="0.7" aria-label="Theme Volume">
+    </div>
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="js/audio.js"></script>

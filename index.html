@@ -8,7 +8,7 @@
   <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
   
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/themes.css">
@@ -31,14 +31,14 @@
     </div>
 
     <div class="header-controls">
-      <!-- Audio Atmosphere Toggle -->
-      <button class="audio-btn" id="audio-toggle" aria-label="Toggle Sci-Fi Audio" aria-pressed="false">
+      <!-- Avengers Doomsday Theme Audio Toggle -->
+      <button class="audio-btn" id="audio-toggle" aria-label="Toggle Avengers Doomsday Theme" aria-pressed="false" title="Toggle Avengers: Doomsday Official Theme">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
           <line x1="23" y1="9" x2="17" y2="15"></line>
           <line x1="17" y1="9" x2="23" y2="15"></line>
         </svg>
-        AUDIO OFF
+        THEME OFF
       </button>
 
       <!-- Track Color Switcher Dots -->
@@ -109,74 +109,13 @@
           </div>
         </div>
 
-        <!-- DOCTOR DOOM INTERACTIVE DUAL-POSTER SHOWCASE -->
+        <!-- DOCTOR DOOM HERO POSTER (TRACK 02 ARMORED DOOM IN EMERALD MIST) -->
         <div class="hero-poster-container" id="poster-tilt-container">
-          <div class="poster-tabs" role="tablist" aria-label="Doomsday Poster Selection">
-            <button class="poster-tab-btn active" data-poster="throne" type="button" role="tab" aria-selected="true">
-              🏛️ Cathedral Throne Room
-            </button>
-            <button class="poster-tab-btn" data-poster="cloaks" type="button" role="tab" aria-selected="false">
-              👥 The Masked Factions
-            </button>
-          </div>
-
-          <!-- POSTER 1: CATHEDRAL THRONE ROOM (AICTE IDEA LAB / DOCTOR DOOM SOVEREIGNTY) -->
-          <div class="hero-poster-frame active" id="poster-throne">
-            <img src="assets/images/doom-throne.jpg" alt="Avengers: Doomsday Cathedral Throne Room and Latverian Council" loading="eager">
-            
-            <!-- Interactive Faction Pins (Clickable to jump to Track Pages) -->
-            <a href="track-robotics-iot.html" class="poster-pin" style="top:58%; left:36%; --pin-glow:#c084fc;" title="Purple Syndicate: Track 01 (Robotics & IoT)">
-              <span class="pin-marker"></span>
-              <span class="pin-card">🔮 Track 01: Purple Robotics & IoT →</span>
-            </a>
-
-            <a href="track-sustainability.html" class="poster-pin" style="top:60%; left:63%; --pin-glow:#34d399;" title="Green Order: Track 02 (Sustainable Development)">
-              <span class="pin-marker"></span>
-              <span class="pin-card">🌿 Track 02: Green Sustainable Dev →</span>
-            </a>
-
-            <a href="track-software-ai.html" class="poster-pin" style="top:52%; left:50%; --pin-glow:#ef4444;" title="Red Sovereign: Track 03 (Software & Agentic AI)">
-              <span class="pin-marker"></span>
-              <span class="pin-card">🔴 Track 03: Red Software & AI →</span>
-            </a>
-
-            <div class="poster-pin" style="top:88%; left:50%; --pin-glow:#facc15;" title="Arcane Latverian Summoning Seal">
-              <span class="pin-marker"></span>
-              <span class="pin-card">⚡ Arcane Latverian Summoning Seal</span>
-            </div>
-
+          <!-- SINGLE HERO POSTER: TRACK 02 - ARMORED DOCTOR DOOM -->
+          <div class="hero-poster-frame active" id="poster-striding">
+            <img src="assets/images/doom-striding.jpg" alt="Doctor Doom Armored in Emerald Mist — Avengers: Doomsday" loading="eager">
             <div class="hero-poster-caption">
-              "12.18.26 IS DOOMSDAY" · CATHEDRAL OF LATVERIA
-            </div>
-          </div>
-
-          <!-- POSTER 2: THE MASKED FACTIONS (SDCC TEASER REVEAL) -->
-          <div class="hero-poster-frame" id="poster-cloaks">
-            <img src="assets/images/doom-cloaks.jpg" alt="Avengers: Doomsday Doctor Doom and Cloaked Factions" loading="lazy">
-            
-            <!-- Interactive Faction Pins -->
-            <a href="track-robotics-iot.html" class="poster-pin" style="top:40%; left:12%; --pin-glow:#c084fc;" title="Track 01: Robotics & IoT">
-              <span class="pin-marker"></span>
-              <span class="pin-card">🔮 Track 01: Purple Robotics Syndicate →</span>
-            </a>
-
-            <div class="poster-pin" style="top:25%; left:48%; --pin-glow:#34d399;" title="Doctor Victor von Doom">
-              <span class="pin-marker"></span>
-              <span class="pin-card">👑 Victor Von Doom — Sovereign Overseer</span>
-            </div>
-
-            <div class="poster-pin" style="top:32%; left:62%; --pin-glow:#fbbf24;" title="Latverian Sentinel Automaton">
-              <span class="pin-marker"></span>
-              <span class="pin-card">🤖 Latverian Sentinel Automaton</span>
-            </div>
-
-            <a href="track-sustainability.html" class="poster-pin" style="top:42%; left:88%; --pin-glow:#34d399;" title="Track 02: Sustainable Development">
-              <span class="pin-marker"></span>
-              <span class="pin-card">🌿 Track 02: Green Sustainable Dev →</span>
-            </a>
-
-            <div class="hero-poster-caption">
-              "INFINITY VISION" · THE MASKED SOVEREIGNTY
+              "NEW MASK, SAME TASK" · DOCTOR VICTOR VON DOOM
             </div>
           </div>
 
@@ -415,68 +354,201 @@
       </div>
     </section>
 
-    <!-- SECTION 06: SCHEDULE FOR 11 DEC 2026 -->
+    <!-- SECTION 06: OFFLINE FINAL DAY SCHEDULE & LATVERIA TACTICAL MAP -->
     <section id="schedule">
-      <h2>Offline Final Day Schedule <span class="sub-tag">11 December 2026</span></h2>
-      <p>A single intensive day at the AICTE IDEA Lab, PESCE, for the 30 finalist teams (60 to 120 participants).</p>
+      <h2>Offline Final Day Schedule <span class="sub-tag">11 December 2026 · Latveria Deployment Map</span></h2>
+      <p>An 8-hour live engineering crucible at the AICTE IDEA Lab, PESCE Mandya for the 30 finalist teams. Follow the sovereign timeline mapped across the strategic sectors of Latveria:</p>
 
-      <div class="schedule-table-wrap">
-        <table class="schedule-table">
-          <thead>
-            <tr>
-              <th>Timeline</th>
-              <th>Session & Activity</th>
-              <th>Lead By</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><time>09:30</time></td>
-              <td><b>Registration and Check-in</b><br><small style="color:var(--dim)">Finalist teams assemble at AICTE IDEA Lab and claim workbenches.</small></td>
-              <td>AICTE IDEA Lab</td>
-            </tr>
-            <tr>
-              <td><time>10:00</time></td>
-              <td><b>Inauguration</b><br><small style="color:var(--dim)">Opening ceremony, protocol address, and hackathon briefing.</small></td>
-              <td>Protocol</td>
-            </tr>
-            <tr>
-              <td><time>10:30</time></td>
-              <td><b>Mentoring and Upskilling Sessions</b><br><small style="color:var(--dim)">Domain mentors inspect builds and provide architectural refinement.</small></td>
-              <td>Mentors</td>
-            </tr>
-            <tr>
-              <td><time>13:00</time></td>
-              <td><b>Lunch & Recharge Break</b><br><small style="color:var(--dim)">Catered lunch provided for all finalist participants and mentors.</small></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><time>14:00</time></td>
-              <td><b>Mentoring Continues & Final Preparation</b><br><small style="color:var(--dim)">Final push to lock code, hardware rigs, and presentation slides.</small></td>
-              <td>Mentors</td>
-            </tr>
-            <tr>
-              <td><time>16:30</time></td>
-              <td><b>Tea & Networking Break</b></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><time>17:00</time></td>
-              <td><b>Project Presentations and Evaluation</b><br><small style="color:var(--dim)">Live 5-minute pit defenses and prototype demonstrations before judges.</small></td>
-              <td>Judges</td>
-            </tr>
-            <tr>
-              <td><time>18:30</time></td>
-              <td><b>Announcement of Winners</b><br><small style="color:var(--dim)">Declaration of theme winners and crowning of IGNITE 2.0 champions.</small></td>
-              <td>Protocol</td>
-            </tr>
-            <tr>
-              <td><time>19:00</time></td>
-              <td><b>Valedictory and Certificates</b><br><small style="color:var(--dim)">Presentation of trophies, certificates, and closing remarks.</small></td>
-              <td>Protocol</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="latveria-schedule-grid">
+        <!-- COLUMN 1: LATVERIA TACTICAL MAP -->
+        <div class="tactical-map-container">
+          <div class="tactical-map-header">
+            <span>📡 Latveria Incursion Theater</span>
+            <span>Sector <b>001 // LATVERIA</b></span>
+          </div>
+          <div class="tactical-map-frame">
+            <img src="assets/images/latveria-map.jpg" alt="Official Latveria Map — Avengers: Doomsday Realm of Doctor Doom" loading="lazy">
+          </div>
+          <div class="tactical-map-caption">
+            <h4>🗺️ Sovereign Territory of <b>Victor Von Doom</b></h4>
+            <p>
+              Official tactical terrain of Latveria. Finalist teams deploy their working prototypes through key geopolitical sectors — from initial border security to apex judgment inside Castle Von Doom.
+            </p>
+            <div class="tactical-map-legend">
+              <div class="tactical-legend-item">
+                <span>🏰</span>
+                <span><b>Castle Von Doom:</b> Sovereign Judgment</span>
+              </div>
+              <div class="tactical-legend-item">
+                <span>⚙️</span>
+                <span><b>Doomsburg:</b> Hardware Foundries</span>
+              </div>
+              <div class="tactical-legend-item">
+                <span>🌲</span>
+                <span><b>Doomwald:</b> Forest Commons</span>
+              </div>
+              <div class="tactical-legend-item">
+                <span>⛰️</span>
+                <span><b>Mt. Diclorum:</b> High-Altitude AI</span>
+              </div>
+              <div class="tactical-legend-item">
+                <span>🌊</span>
+                <span><b>Doom Falls:</b> Hydro & Bio Order</span>
+              </div>
+              <div class="tactical-legend-item">
+                <span>🏛️</span>
+                <span><b>Doomstadt:</b> Convocation Citadel</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- COLUMN 2: DOOMSDAY GLOWING TIMELINE -->
+        <div class="doomsday-timeline">
+          <!-- STAGE 01 -->
+          <div class="timeline-step">
+            <div class="timeline-node">01</div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <span class="timeline-stage-tag">Stage 01 · Check-in</span>
+                <span class="timeline-time-tag">09:30 AM</span>
+              </div>
+              <h3 class="timeline-title">Infiltration & Citadel Registration</h3>
+              <div class="timeline-sector">📍 Latverian Border Checkpoint // AICTE IDEA Lab</div>
+              <p class="timeline-desc">
+                All 30 finalist teams assemble, complete security identity verification, and claim their designated high-power hardware workbenches and Wi-Fi credentials.
+              </p>
+            </div>
+          </div>
+
+          <!-- STAGE 02 -->
+          <div class="timeline-step">
+            <div class="timeline-node">02</div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <span class="timeline-stage-tag">Stage 02 · Inauguration</span>
+                <span class="timeline-time-tag">10:00 AM</span>
+              </div>
+              <h3 class="timeline-title">The Sovereign Incursion Decree</h3>
+              <div class="timeline-sector">📍 Castle Von Doom // Main Auditorium</div>
+              <p class="timeline-desc">
+                Ceremonial launch, dignitary address, and briefing on the Doomsday evaluation metrics and rule of engagement.
+              </p>
+            </div>
+          </div>
+
+          <!-- STAGE 03 -->
+          <div class="timeline-step">
+            <div class="timeline-node">03</div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <span class="timeline-stage-tag">Stage 03 · Build Sprint</span>
+                <span class="timeline-time-tag">10:30 AM</span>
+              </div>
+              <h3 class="timeline-title">Forging in the Foundries & Mentoring</h3>
+              <div class="timeline-sector">📍 Doomsburg Foundries // IDEA Lab Workbenches</div>
+              <p class="timeline-desc">
+                The 8-hour sprint begins. Technical mentors and domain faculty circulate across all stations, inspecting circuit boards, reviewing code logic, and refining system architectures.
+              </p>
+            </div>
+          </div>
+
+          <!-- STAGE 04 -->
+          <div class="timeline-step">
+            <div class="timeline-node">04</div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <span class="timeline-stage-tag">Stage 04 · Recharge</span>
+                <span class="timeline-time-tag">01:00 PM</span>
+              </div>
+              <h3 class="timeline-title">Latverian Rations & Energy Protocol</h3>
+              <div class="timeline-sector">📍 Doomwald Forest Commons // Dining Quad</div>
+              <p class="timeline-desc">
+                Full catered lunch break for all finalist teams, mentors, and organizing staff to recharge cognitive bandwidth before the afternoon development push.
+              </p>
+            </div>
+          </div>
+
+          <!-- STAGE 05 -->
+          <div class="timeline-step">
+            <div class="timeline-node">05</div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <span class="timeline-stage-tag">Stage 05 · Calibration</span>
+                <span class="timeline-time-tag">02:00 PM</span>
+              </div>
+              <h3 class="timeline-title">Apex Architecture & Firmware Lock-in</h3>
+              <div class="timeline-sector">📍 Mt. Diclorum Labs // Embedded Hardware Bay</div>
+              <p class="timeline-desc">
+                Crucial secondary mentoring round. Teams lock their GitHub repositories, flash final firmware onto microcontrollers, and dry-run live demonstration tests.
+              </p>
+            </div>
+          </div>
+
+          <!-- STAGE 06 -->
+          <div class="timeline-step">
+            <div class="timeline-node">06</div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <span class="timeline-stage-tag">Stage 06 · Debrief</span>
+                <span class="timeline-time-tag">04:30 PM</span>
+              </div>
+              <h3 class="timeline-title">Tactical Hydro-Exchange & High Tea</h3>
+              <div class="timeline-sector">📍 Doom Falls Hydro-Plaza // Networking Area</div>
+              <p class="timeline-desc">
+                High tea, snacks, and peer exchange. Teams take a brief tactical breather as presentation rosters and judge panels are deployed.
+              </p>
+            </div>
+          </div>
+
+          <!-- STAGE 07 -->
+          <div class="timeline-step">
+            <div class="timeline-node">07</div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <span class="timeline-stage-tag">Stage 07 · Evaluation</span>
+                <span class="timeline-time-tag">05:00 PM</span>
+              </div>
+              <h3 class="timeline-title">The Sovereign Tribunal (Live Defense)</h3>
+              <div class="timeline-sector">📍 Court of Victor Von Doom // Jury Stations</div>
+              <p class="timeline-desc">
+                Strict 5-minute live pitch and working prototype demonstration before industry and academic juries. Zero tolerance for slide-only vaporware; working prototypes only.
+              </p>
+            </div>
+          </div>
+
+          <!-- STAGE 08 -->
+          <div class="timeline-step">
+            <div class="timeline-node">08</div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <span class="timeline-stage-tag">Stage 08 · Winner Reveal</span>
+                <span class="timeline-time-tag">06:30 PM</span>
+              </div>
+              <h3 class="timeline-title">The Victor's Decree & Champion Crowning</h3>
+              <div class="timeline-sector">📍 The Latverian Senate // Main Amphitheater</div>
+              <p class="timeline-desc">
+                Official tallying of scores by jury heads and announcement of winners across Track 01, Track 02, and Track 03.
+              </p>
+            </div>
+          </div>
+
+          <!-- STAGE 09 -->
+          <div class="timeline-step">
+            <div class="timeline-node">09</div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <span class="timeline-stage-tag">Stage 09 · Valedictory</span>
+                <span class="timeline-time-tag">07:00 PM</span>
+              </div>
+              <h3 class="timeline-title">Valedictory & Battleworld Convocation</h3>
+              <div class="timeline-sector">📍 Citadel of Doomstadt // Ceremony Hall</div>
+              <p class="timeline-desc">
+                Distribution of ₹45,000 cash prizes, medals, institutional mementos, and certificate presentation ceremony.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -580,6 +652,24 @@
     <div>IGNITE 2.0 · 11 December 2026 · AICTE IDEA Lab, PES College of Engineering, Mandya</div>
     <div style="font-size: 0.82rem; opacity: 0.75;">Jointly Hosted by IIC-PESCE · PES NEXT Innovation & Incubation Centre · InUnity · NAIN · IIIT-B</div>
   </footer>
+
+  <!-- Audio Element for Official Theme (Assets/Audio) -->
+  <audio id="bg-music" src="assets/audio/avengers-doomsday-theme.mp3" preload="auto" loop></audio>
+
+  <!-- Floating Doomsday Audio Player HUD (Avengers: Doomsday Official Theme) -->
+  <div class="doomsday-audio-hud" id="doomsday-audio-hud" title="Avengers: Doomsday Official Theme Player">
+    <button class="hud-play-btn" id="hud-play-btn" type="button" aria-label="Play or Pause Avengers Doomsday Theme">
+      ▶
+    </button>
+    <div class="hud-track-info">
+      <div class="hud-track-title">AVENGERS: DOOMSDAY THEME</div>
+      <div class="hud-track-artist">ALAN SILVESTRI · INCURSION</div>
+    </div>
+    <div class="hud-volume-wrap">
+      <span class="hud-vol-icon">🔊</span>
+      <input type="range" class="hud-vol-slider" id="hud-vol-slider" min="0" max="1" step="0.05" value="0.7" aria-label="Theme Volume">
+    </div>
+  </div>
 
   <!-- Third-party 3D WebGL Engine -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
